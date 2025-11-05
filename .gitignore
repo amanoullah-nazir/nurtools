@@ -1,0 +1,32 @@
+
+# Laravel & Vue & Inertia.js .gitignore
+/.phpunit.cache
+/node_modules
+/public/build
+/public/hot
+/public/storage
+/storage/*.key
+/vendor
+.env
+.env.*
+Homestead.json
+Homestead.yaml
+auth.json
+npm-debug.log
+yarn-error.log
+/.fleet
+/.idea
+/.vscode
+# OS generated
+.DS_Store
+Thumbs.db
+# Composer
+composer.lock
+# NPM
+package-lock.json
+# Log files
+*.log
+# Coverage
+coverage/
+# Laravel Sail
+docker-compose.override.yml
