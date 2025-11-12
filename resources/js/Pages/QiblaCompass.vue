@@ -17,6 +17,8 @@ const loading = ref(true);
 const error = ref(null);
 const calibrating = ref(false);
 const permissionStatus = ref('prompt');
+const retryCount = ref(0);
+const maxRetries = 3;
 
 // Computed
 const qiblaDirection = computed(() => {
@@ -46,11 +48,25 @@ const getUserLocation = async () => {
 
     try {
         const position = await new Promise((resolve, reject) => {
-            navigator.geolocation.getCurrentPosition(resolve, reject, {
-                enableHighAccuracy: true,
-                timeout: 10000,
-                maximumAge: 0,
-            });
+            navigator.geolocation.getCurrentPosition(
+                resolve, 
+                (err) => {
+                    // Retry on kCLErrorLocationUnknown (error code 0)
+                    if (err.code === 2 && retryCount.value < maxRetries) {
+                        retryCount.value++;
+                        console.log(`Location unavailable, retrying... (${retryCount.value}/${maxRetries})`);
+                        // Wait a bit before retrying
+                        setTimeout(() => getUserLocation(), 2000);
+                        return;
+                    }
+                    reject(err);
+                }, 
+                {
+                    enableHighAccuracy: true,
+                    timeout: 15000,
+                    maximumAge: 0,
+                }
+            );
         });
 
         userLocation.value = {
@@ -59,6 +75,7 @@ const getUserLocation = async () => {
             accuracy: position.coords.accuracy,
         };
 
+        retryCount.value = 0; // Reset retry count on success
         await calculateQibla();
         loading.value = false;
     } catch (err) {
@@ -139,14 +156,14 @@ const requestOrientationPermission = async () => {
 // Get user-friendly error message
 const getGeolocationError = (err) => {
     switch (err.code) {
-        case err.PERMISSION_DENIED:
-            return 'Location permission denied. Please enable location services.';
-        case err.POSITION_UNAVAILABLE:
-            return 'Location information unavailable. Please try again.';
-        case err.TIMEOUT:
-            return 'Location request timed out. Please try again.';
+        case 1: // PERMISSION_DENIED
+            return 'Location permission denied. Please enable location services in your browser or device settings.';
+        case 2: // POSITION_UNAVAILABLE
+            return 'Unable to determine your location. Please ensure you are outdoors or near a window, and that location services are enabled.';
+        case 3: // TIMEOUT
+            return 'Location request timed out. Please check your internet connection and try again.';
         default:
-            return 'An unknown error occurred getting your location.';
+            return 'Unable to get your location. Please ensure location services are enabled and try again.';
     }
 };
 
@@ -159,6 +176,7 @@ const initializeCompass = async () => {
 // Retry function
 const retry = () => {
     error.value = null;
+    retryCount.value = 0;
     initializeCompass();
 };
 
@@ -189,6 +207,14 @@ onUnmounted(() => {
                         <div v-if="loading" class="text-center py-12">
                             <Loader2 :size="48" class="mx-auto text-emerald-600 animate-spin" :stroke-width="2" />
                             <p class="mt-4 text-gray-600">Getting your location...</p>
+                            <p v-if="retryCount > 0" class="mt-2 text-sm text-gray-500">
+                                Retrying... ({{ retryCount }}/{{ maxRetries }})
+                            </p>
+                            <div class="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg max-w-md mx-auto">
+                                <p class="text-sm text-blue-800">
+                                    <strong>Having trouble?</strong> Make sure location services are enabled and you're outdoors or near a window.
+                                </p>
+                            </div>
                         </div>
 
                         <!-- Error State -->
@@ -201,6 +227,33 @@ onUnmounted(() => {
                             >
                                 Try Again
                             </button>
+                            
+                            <!-- Help Tips -->
+                            <div class="mt-8 p-6 bg-gray-50 border border-gray-200 rounded-lg max-w-md mx-auto text-left">
+                                <h3 class="font-semibold text-gray-900 mb-3">Troubleshooting Tips:</h3>
+                                <ul class="space-y-2 text-sm text-gray-700">
+                                    <li class="flex items-start">
+                                        <span class="mr-2">•</span>
+                                        <span>Make sure location services are enabled in your device settings</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="mr-2">•</span>
+                                        <span>Check that your browser has permission to access location</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="mr-2">•</span>
+                                        <span>Try moving outdoors or near a window for better GPS signal</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="mr-2">•</span>
+                                        <span>Ensure you have an active internet connection</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="mr-2">•</span>
+                                        <span>On iOS: Settings → Safari → Location → Allow</span>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
 
                         <!-- Compass -->
