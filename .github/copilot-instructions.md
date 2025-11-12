@@ -35,6 +35,7 @@ This workspace is for the **Nurtools** project: an Islamic tools web application
 - When adding new features, prefer Laravel packages and official plugins when available.
 - For PWA features, use `vite-plugin-pwa` for Vue with Vite.
 - **Mobile-first development:** All features must be optimized for mobile devices.
+- **Icons:** Always use Lucide icons (via `lucide-vue-next`) for all icons throughout the app. Never use emoticons or emoji characters.
 - Do not add media or external links unless explicitly requested.
 - Do not create new folders at the root unless required by Laravel, Vue, or PWA standards.
 - All documentation should be concise and focused on developer experience.

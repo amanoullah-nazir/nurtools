@@ -2,6 +2,7 @@
 import { ref, onMounted, onUnmounted, computed } from 'vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
+import { Loader2, AlertCircle, Navigation, MapPin } from 'lucide-vue-next';
 
 const props = defineProps({
     makkahCoordinates: Object,
@@ -179,17 +180,13 @@ onUnmounted(() => {
                         
                         <!-- Loading State -->
                         <div v-if="loading" class="text-center py-12">
-                            <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-600"></div>
+                            <Loader2 :size="48" class="mx-auto text-emerald-600 animate-spin" :stroke-width="2" />
                             <p class="mt-4 text-gray-600">Getting your location...</p>
                         </div>
 
                         <!-- Error State -->
                         <div v-else-if="error" class="text-center py-12">
-                            <div class="text-red-600 mb-4">
-                                <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                            </div>
+                            <AlertCircle :size="64" class="mx-auto text-red-600 mb-4" :stroke-width="2" />
                             <p class="text-gray-700 mb-4">{{ error }}</p>
                             <button 
                                 @click="retry"
@@ -204,7 +201,10 @@ onUnmounted(() => {
                             
                             <!-- Location Info -->
                             <div class="w-full mb-8 text-center">
-                                <p class="text-sm text-gray-600">Your Location</p>
+                                <div class="flex items-center justify-center gap-2 mb-2">
+                                    <MapPin :size="20" class="text-gray-600" :stroke-width="2" />
+                                    <p class="text-sm text-gray-600">Your Location</p>
+                                </div>
                                 <p class="text-lg font-semibold">
                                     {{ userLocation?.lat.toFixed(4) }}°, {{ userLocation?.lng.toFixed(4) }}°
                                 </p>
@@ -253,7 +253,10 @@ onUnmounted(() => {
 
                             <!-- Bearing Info -->
                             <div class="mt-8 text-center">
-                                <p class="text-sm text-gray-600">Qibla Direction</p>
+                                <div class="flex items-center justify-center gap-2 mb-2">
+                                    <Navigation :size="20" class="text-gray-600" :stroke-width="2" />
+                                    <p class="text-sm text-gray-600">Qibla Direction</p>
+                                </div>
                                 <p class="text-3xl font-bold text-emerald-600">
                                     {{ qiblaBearing.toFixed(1) }}°
                                 </p>

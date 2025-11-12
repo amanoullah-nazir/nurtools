@@ -1,5 +1,6 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
+import { Compass, Calculator, Database } from 'lucide-vue-next';
 
 defineProps({
     canLogin: Boolean,
@@ -38,10 +39,7 @@ defineProps({
         <div class="max-w-4xl mx-auto px-4 py-12 text-center">
             <div class="mb-8">
                 <div class="inline-block p-6 bg-emerald-600 rounded-3xl shadow-2xl">
-                    <svg class="w-20 h-20 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2v4m0 12v4M2 12h4m12 0h4"/>
-                    </svg>
+                    <Compass :size="80" class="text-white" :stroke-width="2" />
                 </div>
             </div>
 
@@ -50,12 +48,26 @@ defineProps({
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
                 <div class="bg-white p-6 rounded-xl shadow-lg text-left">
-                    <h3 class="text-lg font-semibold mb-2">Qibla Compass</h3>
-                    <p class="text-gray-600">Find the direction to Makkah from anywhere in the world.</p>
+                    <div class="flex items-start gap-4">
+                        <div class="p-3 bg-emerald-100 rounded-lg">
+                            <Compass :size="24" class="text-emerald-600" :stroke-width="2" />
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-2">Qibla Compass</h3>
+                            <p class="text-gray-600">Find the direction to Makkah from anywhere in the world.</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-lg text-left">
-                    <h3 class="text-lg font-semibold mb-2">Zakaat Calculator</h3>
-                    <p class="text-gray-600">Calculate your Zakaat obligations with accurate Nisab thresholds.</p>
+                    <div class="flex items-start gap-4">
+                        <div class="p-3 bg-emerald-100 rounded-lg">
+                            <Calculator :size="24" class="text-emerald-600" :stroke-width="2" />
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-2">Zakaat Calculator</h3>
+                            <p class="text-gray-600">Calculate your Zakaat obligations with accurate Nisab thresholds.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
