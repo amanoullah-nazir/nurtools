@@ -47,46 +47,49 @@ defineProps({
             <p class="text-xl sm:text-2xl text-emerald-700 mb-12">Islamic Tools for Daily Life</p>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
-                <div class="bg-white p-6 rounded-xl shadow-lg text-left">
+                <Link :href="route('qibla.index')" class="bg-white p-6 rounded-xl shadow-lg text-left hover:shadow-xl transition transform hover:scale-105">
                     <div class="flex items-start gap-4">
                         <div class="p-3 bg-emerald-100 rounded-lg">
                             <Compass :size="24" class="text-emerald-600" :stroke-width="2" />
                         </div>
                         <div>
                             <h3 class="text-lg font-semibold mb-2">Qibla Compass</h3>
-                            <p class="text-gray-600">Find the direction to Makkah from anywhere in the world.</p>
+                            <p class="text-gray-600 mb-3">Find the direction to Makkah from anywhere in the world.</p>
+                            <span class="text-emerald-600 font-semibold text-sm">Use Now →</span>
                         </div>
                     </div>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-lg text-left">
+                </Link>
+                <div class="bg-white p-6 rounded-xl shadow-lg text-left opacity-75">
                     <div class="flex items-start gap-4">
-                        <div class="p-3 bg-emerald-100 rounded-lg">
-                            <Calculator :size="24" class="text-emerald-600" :stroke-width="2" />
+                        <div class="p-3 bg-gray-100 rounded-lg">
+                            <Calculator :size="24" class="text-gray-400" :stroke-width="2" />
                         </div>
                         <div>
                             <h3 class="text-lg font-semibold mb-2">Zakaat Calculator</h3>
-                            <p class="text-gray-600">Calculate your Zakaat obligations with accurate Nisab thresholds.</p>
+                            <p class="text-gray-600 mb-3">Calculate your Zakaat obligations with accurate Nisab thresholds.</p>
+                            <span class="text-gray-500 font-semibold text-sm">Coming Soon</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <template v-if="$page.props.auth.user">
+                        <!-- Call to Action -->
+            <div class="space-y-4">
                 <Link
                     :href="route('qibla.index')"
-                    class="inline-block bg-emerald-600 text-white text-lg font-semibold px-8 py-4 rounded-lg hover:bg-emerald-700 shadow-lg"
+                    class="inline-block bg-emerald-600 text-white text-lg font-semibold px-8 py-4 rounded-lg hover:bg-emerald-700 transition transform hover:scale-105 shadow-lg"
                 >
-                    Open Qibla Compass
+                    Try Qibla Compass Free
                 </Link>
-            </template>
-            <template v-else>
-                <Link
-                    :href="route('register')"
-                    class="inline-block bg-emerald-600 text-white text-lg font-semibold px-8 py-4 rounded-lg hover:bg-emerald-700 shadow-lg"
-                >
-                    Get Started - It's Free
-                </Link>
-            </template>
+                <p class="text-sm text-emerald-700">
+                    No account required • Works on all devices
+                </p>
+                <div class="pt-4">
+                    <Link :href="route('pricing')" class="text-emerald-700 font-semibold underline hover:text-emerald-900">
+                        View Premium Features →
+                    </Link>
+                </div>
+            </div>
         </div>
     </div>
 </template>

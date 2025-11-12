@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted, onUnmounted, computed } from 'vue';
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import PublicLayout from '@/Layouts/PublicLayout.vue';
 import { Head } from '@inertiajs/vue3';
 import { Loader2, AlertCircle, Navigation, MapPin } from 'lucide-vue-next';
 
@@ -168,7 +168,7 @@ onUnmounted(() => {
 <template>
     <Head title="Qibla Compass" />
 
-    <AuthenticatedLayout>
+    <PublicLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">Qibla Compass</h2>
         </template>
@@ -276,7 +276,7 @@ onUnmounted(() => {
                 </div>
             </div>
         </div>
-    </AuthenticatedLayout>
+    </PublicLayout>
 </template>
 
 <style scoped>

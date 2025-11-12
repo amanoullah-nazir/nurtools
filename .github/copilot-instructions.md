@@ -5,40 +5,51 @@ This workspace is for the **Nurtools** project: an Islamic tools web application
 ## Project Details
 - **Frameworks:** Laravel 11 (PHP), Vue 3, Inertia.js
 - **Purpose:** Islamic tools app (Qibla compass and Zakaat calculator)
+- **Business Model:** Freemium - Core tools are free, premium features require subscription
 - **Frontend:** Vue 3 via Inertia.js (SPA-like experience)
-- **Backend:** Laravel
+- **Backend:** Laravel with Laravel Breeze for authentication
 - **Database:** MySQL, database name: `nurtools`
 - **PWA:** Project must support Progressive Web App features for flawless mobile experience
 
 ## Features to Develop
 
-### 1. Qibla Compass (Priority: HIGH)
-- Primary feature for finding Qibla direction
-- Must work flawlessly on mobile devices
-- Uses device geolocation and compass/orientation sensors
-- Real-time compass visualization
-- Shows distance and direction to Makkah
-- Offline support via PWA
+### Free Features (No Login Required)
+- **Qibla Compass** - Real-time direction to Makkah using device sensors
+- **Basic Zakaat Calculator** - Simple calculations without history
+- All features work on mobile and desktop
+- PWA support for offline usage
+- No advertisements
 
-### 2. Zakaat Calculator
-- Calculate Zakaat on various asset types
-- Support for gold, silver, cash, investments
-- Nisab threshold calculations
-- Save and track calculations
+### Premium Features (Requires Account & Subscription)
+- **Advanced Zakaat Calculator** - With calculation history and tracking
+- **Prayer Time Notifications** - Location-based prayer time alerts
+- **Cloud Sync** - Sync data across multiple devices
+- **Zakaat Reports** - Detailed tracking and annual reports
+- **Priority Support** - Faster response times
+- **Early Access** - Beta features before public release
 
 ## Copilot Guidance
 
 - All code and scaffolding must use the current directory as the project root.
 - Use Laravel best practices for backend and API development.
+- Use Laravel Breeze for authentication (login, register, password reset).
 - Use Vue 3 (with Inertia.js) for all frontend components and pages.
 - All database configuration must use the `nurtools` MySQL database.
 - When adding new features, prefer Laravel packages and official plugins when available.
 - For PWA features, use `vite-plugin-pwa` for Vue with Vite.
+- **Public-first approach:** Core tools must be accessible without authentication.
 - **Mobile-first development:** All features must be optimized for mobile devices.
 - **Icons:** Always use Lucide icons (via `lucide-vue-next`) for all icons throughout the app. Never use emoticons or emoji characters.
+- **Freemium model:** Clearly distinguish between free and premium features.
 - Do not add media or external links unless explicitly requested.
 - Do not create new folders at the root unless required by Laravel, Vue, or PWA standards.
 - All documentation should be concise and focused on developer experience.
+
+## Layouts
+
+- **PublicLayout.vue:** For public pages and tools (Qibla, Pricing, Welcome). Shows Login/Register/Pricing links.
+- **AuthenticatedLayout.vue:** For logged-in users (Dashboard, Profile). Shows user menu and premium features.
+- **GuestLayout.vue:** For auth pages (Login, Register, Password Reset).
 
 ## Development Steps: Qibla Compass
 

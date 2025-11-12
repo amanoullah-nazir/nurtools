@@ -19,5 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Qibla Compass API
-Route::post('/qibla/calculate', [QiblaController::class, 'calculate'])->middleware('auth');
+// Qibla Compass API - Public access
+Route::post('/qibla/calculate', [QiblaController::class, 'calculate']);
