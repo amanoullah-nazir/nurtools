@@ -73,17 +73,24 @@ const calculateQibla = async () => {
     if (!userLocation.value) return;
 
     try {
+        const csrfToken = document.querySelector('meta[name="csrf-token"]')?.content || '';
+        
         const response = await fetch('/api/qibla/calculate', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                'Accept': 'application/json',
+                ...(csrfToken && { 'X-CSRF-TOKEN': csrfToken }),
             },
             body: JSON.stringify({
                 latitude: userLocation.value.lat,
                 longitude: userLocation.value.lng,
             }),
         });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
 
         const data = await response.json();
         qiblaBearing.value = data.bearing;

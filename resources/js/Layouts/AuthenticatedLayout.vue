@@ -1,30 +1,32 @@
 <script setup>
 import { ref } from 'vue';
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
+import Footer from '@/Components/Footer.vue';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import { Link } from '@inertiajs/vue3';
-import { Menu, X, ChevronDown } from 'lucide-vue-next';
+import { Menu, X, ChevronDown, Compass } from 'lucide-vue-next';
 
 const showingNavigationDropdown = ref(false);
 </script>
 
 <template>
-    <div>
-        <div class="min-h-screen bg-gray-100">
-            <nav class="bg-white border-b border-gray-100">
+    <div class="min-h-screen bg-gray-50 flex flex-col">
+        <div class="flex-1 flex flex-col">
+            <nav class="bg-white border-b border-gray-200 shadow-sm">
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
                         <div class="flex">
                             <!-- Logo -->
                             <div class="shrink-0 flex items-center">
-                                <Link :href="route('dashboard')">
-                                    <ApplicationLogo
-                                        class="block h-9 w-auto fill-current text-gray-800"
-                                    />
+                                <Link :href="route('dashboard')" class="flex items-center space-x-2">
+                                    <div class="p-2 bg-emerald-600 rounded-lg">
+                                        <Compass :size="20" class="text-white" :stroke-width="2" />
+                                    </div>
+                                    <span class="text-xl font-bold text-gray-900">Nurtools</span>
                                 </Link>
                             </div>
 
@@ -119,9 +121,12 @@ const showingNavigationDropdown = ref(false);
             </header>
 
             <!-- Page Content -->
-            <main>
+            <main class="flex-1">
                 <slot />
             </main>
         </div>
+        
+        <!-- Footer -->
+        <Footer />
     </div>
 </template>
