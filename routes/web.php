@@ -35,6 +35,15 @@ Route::get('/qibla', [QiblaController::class, 'index'])->name('qibla.index');
 Route::get('/pricing', function () {
     return Inertia::render('Pricing');
 })->name('pricing');
+Route::get('/about', function () {
+    return Inertia::render('About');
+})->name('about');
+Route::get('/privacy', function () {
+    return Inertia::render('Privacy');
+})->name('privacy');
+Route::get('/terms', function () {
+    return Inertia::render('Terms');
+})->name('terms');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

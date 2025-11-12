@@ -19,7 +19,7 @@ import { Compass, Mail, Github, Twitter } from 'lucide-vue-next';
                         Islamic tools for daily life. Find Qibla direction, calculate Zakaat, and more — accessible on any device.
                     </p>
                     <p class="text-sm text-gray-500">
-                        © {{ new Date().getFullYear() }} Nurtools. All rights reserved.
+                        © {{ new Date().getFullYear() }} Blue Dome Studio. All rights reserved.
                     </p>
                 </div>
 
@@ -48,19 +48,19 @@ import { Compass, Mail, Github, Twitter } from 'lucide-vue-next';
                             </Link>
                         </li>
                         <li>
-                            <a href="#" class="text-gray-600 hover:text-emerald-600 transition">
+                            <Link :href="route('about')" class="text-gray-600 hover:text-emerald-600 transition">
                                 About Us
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a href="#" class="text-gray-600 hover:text-emerald-600 transition">
+                            <Link :href="route('privacy')" class="text-gray-600 hover:text-emerald-600 transition">
                                 Privacy Policy
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a href="#" class="text-gray-600 hover:text-emerald-600 transition">
+                            <Link :href="route('terms')" class="text-gray-600 hover:text-emerald-600 transition">
                                 Terms of Service
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </div>
