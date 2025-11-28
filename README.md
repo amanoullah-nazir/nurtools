@@ -23,8 +23,36 @@ Nurtools is an Islamic tools web application built with Laravel 11, Vue 3, and I
 - **Frontend:** Vue 3 with Inertia.js
 - **Authentication:** Laravel Breeze
 - **Database:** MySQL (`nurtools`)
-- **PWA:** Progressive Web App support
+- **PWA:** Progressive Web App with offline support
 - **Icons:** Lucide Icons
+- **Service Worker:** Workbox-powered caching strategy
+
+## PWA Features
+
+Nurtools is a fully installable Progressive Web App with:
+
+- **📱 Installable:** Add to home screen on mobile and desktop
+- **🔌 Offline Support:** Core features work without internet connection
+- **⚡ Fast Loading:** Service worker caching for instant page loads
+- **🎨 Native Feel:** Standalone display mode without browser UI
+- **🔄 Auto Updates:** Automatic background updates for new content
+- **📲 Push Ready:** Infrastructure for future push notifications
+
+### Installing the PWA
+
+**On Mobile (iOS/Android):**
+1. Open the app in your mobile browser
+2. Tap the "Install" button in the prompt, or
+3. Use browser menu → "Add to Home Screen"
+
+**On Desktop (Chrome/Edge):**
+1. Look for the install icon (⊕) in the address bar
+2. Click "Install Nurtools"
+
+**Offline Capabilities:**
+- Qibla Compass works completely offline
+- Zakaat Calculator available offline
+- Cached pages load instantly without network
 
 ## Prerequisites
 - PHP 8.2 or higher

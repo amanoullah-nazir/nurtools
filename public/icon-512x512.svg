@@ -1,0 +1,29 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="512" height="512" rx="80" fill="#059669"/>
+  
+  <!-- Compass circle -->
+  <circle cx="256" cy="256" r="160" fill="white" fill-opacity="0.2"/>
+  <circle cx="256" cy="256" r="140" fill="white" fill-opacity="0.3"/>
+  <circle cx="256" cy="256" r="120" fill="white" fill-opacity="0.4"/>
+  
+  <!-- Compass needle (pointing to Qibla) -->
+  <g transform="translate(256, 256)">
+    <!-- North pointer (red) -->
+    <path d="M 0,-100 L -20,0 L 20,0 Z" fill="#EF4444"/>
+    <!-- South pointer (white) -->
+    <path d="M 0,100 L -20,0 L 20,0 Z" fill="white"/>
+    <!-- Center dot -->
+    <circle cx="0" cy="0" r="16" fill="white"/>
+    <circle cx="0" cy="0" r="12" fill="#059669"/>
+  </g>
+  
+  <!-- Cardinal directions -->
+  <text x="256" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="42" font-weight="bold" fill="white">N</text>
+  <text x="432" y="270" text-anchor="middle" font-family="Arial, sans-serif" font-size="42" font-weight="bold" fill="white">E</text>
+  <text x="256" y="460" text-anchor="middle" font-family="Arial, sans-serif" font-size="42" font-weight="bold" fill="white">S</text>
+  <text x="80" y="270" text-anchor="middle" font-family="Arial, sans-serif" font-size="42" font-weight="bold" fill="white">W</text>
+  
+  <!-- Decorative ring marks -->
+  <circle cx="256" cy="256" r="110" stroke="white" stroke-width="2" fill="none" opacity="0.5"/>
+</svg>

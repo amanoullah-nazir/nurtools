@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import Footer from '@/Components/Footer.vue';
+import InstallPrompt from '@/Components/InstallPrompt.vue';
 import { Link } from '@inertiajs/vue3';
 import { Menu, X, Compass, Calculator, DollarSign, User } from 'lucide-vue-next';
 
@@ -216,5 +217,8 @@ const showingNavigationDropdown = ref(false);
         
         <!-- Footer -->
         <Footer />
+        
+        <!-- PWA Install Prompt -->
+        <InstallPrompt />
     </div>
 </template>
