@@ -1,6 +1,6 @@
 <script setup>
 import { Link } from '@inertiajs/vue3';
-import { Compass, Mail, Github, Twitter } from 'lucide-vue-next';
+import { Compass, Mail, Facebook } from 'lucide-vue-next';
 </script>
 
 <template>
@@ -33,7 +33,9 @@ import { Compass, Mail, Github, Twitter } from 'lucide-vue-next';
                             </Link>
                         </li>
                         <li>
-                            <span class="text-gray-400">Zakaat Calculator (Soon)</span>
+                            <Link :href="route('zakaat.index')" class="text-gray-600 hover:text-emerald-600 transition">
+                                Zakaat Calculator
+                            </Link>
                         </li>
                     </ul>
                 </div>
@@ -70,12 +72,8 @@ import { Compass, Mail, Github, Twitter } from 'lucide-vue-next';
             <div class="mt-8 pt-8 border-t border-gray-200">
                 <div class="flex items-center justify-center space-x-6">
                     <a href="#" class="text-gray-400 hover:text-emerald-600 transition">
-                        <span class="sr-only">Twitter</span>
-                        <Twitter :size="20" :stroke-width="2" />
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-emerald-600 transition">
-                        <span class="sr-only">GitHub</span>
-                        <Github :size="20" :stroke-width="2" />
+                        <span class="sr-only">Facebook</span>
+                        <Facebook :size="20" :stroke-width="2" />
                     </a>
                     <a href="#" class="text-gray-400 hover:text-emerald-600 transition">
                         <span class="sr-only">Email</span>
