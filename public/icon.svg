@@ -1,26 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
-  <rect width="512" height="512" rx="64" fill="#059669"/>
-  <g transform="translate(256,256)">
-    <!-- Compass circle -->
-    <circle cx="0" cy="0" r="180" fill="none" stroke="#ffffff" stroke-width="8"/>
-    <circle cx="0" cy="0" r="160" fill="none" stroke="#ffffff" stroke-width="4" opacity="0.5"/>
+  <!-- Background -->
+  <rect width="512" height="512" rx="96" fill="#059669"/>
+  
+  <!-- Compass Icon (matching all other icons) -->
+  <g transform="translate(256, 256)">
+    <!-- Outer circle -->
+    <circle cx="0" cy="0" r="144" fill="white" opacity="0.2"/>
+    <circle cx="0" cy="0" r="128" stroke="white" stroke-width="12" fill="none"/>
     
-    <!-- North marker -->
-    <text x="0" y="-140" text-anchor="middle" fill="#ffffff" font-size="48" font-weight="bold" font-family="Arial, sans-serif">N</text>
-    
-    <!-- Compass needle pointing to Qibla -->
+    <!-- Compass needle -->
     <g>
-      <!-- North part (green) -->
-      <polygon points="0,-120 -20,0 20,0" fill="#10b981"/>
-      <!-- South part (white) -->
-      <polygon points="0,120 -20,0 20,0" fill="#ffffff" opacity="0.7"/>
-      <!-- Center dot -->
-      <circle cx="0" cy="0" r="12" fill="#ffffff"/>
-      <circle cx="0" cy="0" r="8" fill="#059669"/>
+      <!-- North pointer -->
+      <path d="M 0,-96 L -24,40 L 0,24 L 24,40 Z" fill="white"/>
+      <!-- South pointer -->
+      <path d="M 0,96 L -24,-40 L 0,-24 L 24,-40 Z" fill="white" opacity="0.6"/>
     </g>
     
-    <!-- Kaaba symbol at center -->
-    <rect x="-24" y="32" width="48" height="48" fill="#ffffff" rx="4"/>
-    <rect x="-20" y="36" width="40" height="40" fill="#059669" rx="2"/>
+    <!-- Center dot -->
+    <circle cx="0" cy="0" r="16" fill="white"/>
   </g>
 </svg>
