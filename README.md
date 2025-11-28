@@ -82,7 +82,13 @@ Nurtools is an Islamic tools web application built with Laravel 11, Vue 3, and I
    php artisan migrate
    ```
 
-8. **Build frontend assets**
+8. **Seed the database (optional)**
+   ```bash
+   # Run seeders if you want sample data
+   php artisan db:seed
+   ```
+
+9. **Build frontend assets**
    ```bash
    # For production
    npm run build
@@ -91,12 +97,12 @@ Nurtools is an Islamic tools web application built with Laravel 11, Vue 3, and I
    npm run dev
    ```
 
-9. **Start the development server**
+10. **Start the development server**
    ```bash
    php artisan serve
    ```
 
-10. **Access the application**
+11. **Access the application**
     - Open your browser and visit: `http://localhost:8000`
 
 ## Development Workflow
