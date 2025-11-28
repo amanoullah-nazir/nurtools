@@ -3,7 +3,6 @@ import { ref, computed } from 'vue';
 import PublicLayout from '@/Layouts/PublicLayout.vue';
 import { Head } from '@inertiajs/vue3';
 import { Calculator, Info, DollarSign, TrendingUp, Coins, Briefcase, Wallet, CreditCard } from 'lucide-vue-next';
-import axios from 'axios';
 
 // Form data
 const cash = ref('');
@@ -20,6 +19,10 @@ const result = ref(null);
 const calculating = ref(false);
 const showResults = ref(false);
 
+// Nisab threshold (approximate value in USD)
+// Based on 85g of gold or 595g of silver
+const NISAB_THRESHOLD = 5000;
+
 // Calculate total assets
 const totalAssets = computed(() => {
     return parseFloat(cash.value || 0) + 
@@ -32,30 +35,53 @@ const totalAssets = computed(() => {
 });
 
 // Calculate Zakaat
-const calculateZakaat = async () => {
+const calculateZakaat = () => {
     calculating.value = true;
     showResults.value = false;
 
-    try {
-        const response = await axios.post(route('zakaat.calculate'), {
-            cash: cash.value,
-            bankBalance: bankBalance.value,
-            gold: gold.value,
-            silver: silver.value,
-            investments: investments.value,
-            businessAssets: businessAssets.value,
-            otherAssets: otherAssets.value,
-            debts: debts.value,
-        });
+    // Small delay to show loading state
+    setTimeout(() => {
+        const assets = {
+            cash: parseFloat(cash.value || 0),
+            bankBalance: parseFloat(bankBalance.value || 0),
+            gold: parseFloat(gold.value || 0),
+            silver: parseFloat(silver.value || 0),
+            investments: parseFloat(investments.value || 0),
+            businessAssets: parseFloat(businessAssets.value || 0),
+            otherAssets: parseFloat(otherAssets.value || 0),
+            debts: parseFloat(debts.value || 0),
+        };
 
-        result.value = response.data;
+        // Calculate totals
+        const totalAssetsValue = assets.cash + assets.bankBalance + assets.gold 
+                               + assets.silver + assets.investments + assets.businessAssets 
+                               + assets.otherAssets;
+        
+        const totalDeductions = assets.debts;
+        const zakaatableAmount = totalAssetsValue - totalDeductions;
+
+        // Calculate Zakaat (2.5%)
+        let zakaatDue = 0;
+        let isZakaatDue = false;
+
+        if (zakaatableAmount >= NISAB_THRESHOLD) {
+            zakaatDue = zakaatableAmount * 0.025; // 2.5%
+            isZakaatDue = true;
+        }
+
+        result.value = {
+            totalAssets: totalAssetsValue,
+            totalDeductions: totalDeductions,
+            zakaatableAmount: zakaatableAmount,
+            nisab: NISAB_THRESHOLD,
+            isZakaatDue: isZakaatDue,
+            zakaatDue: zakaatDue,
+            breakdown: assets,
+        };
+
         showResults.value = true;
-    } catch (error) {
-        console.error('Error calculating Zakaat:', error);
-        alert('An error occurred while calculating Zakaat. Please try again.');
-    } finally {
         calculating.value = false;
-    }
+    }, 300);
 };
 
 // Reset form
