@@ -41,6 +41,18 @@ const showingNavigationDropdown = ref(false);
                                     Qibla Compass
                                 </Link>
                                 <Link
+                                    :href="route('zakaat.index')"
+                                    :class="[
+                                        route().current('zakaat.index')
+                                            ? 'border-emerald-600 text-gray-900'
+                                            : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300',
+                                        'inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition'
+                                    ]"
+                                >
+                                    <Calculator :size="18" class="mr-2" :stroke-width="2" />
+                                    Zakaat Calculator
+                                </Link>
+                                <Link
                                     :href="route('pricing')"
                                     :class="[
                                         route().current('pricing')
@@ -112,6 +124,18 @@ const showingNavigationDropdown = ref(false);
                         >
                             <Compass :size="18" class="mr-2" :stroke-width="2" />
                             Qibla Compass
+                        </Link>
+                        <Link
+                            :href="route('zakaat.index')"
+                            :class="[
+                                route().current('zakaat.index')
+                                    ? 'bg-emerald-50 border-emerald-600 text-emerald-700'
+                                    : 'border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800',
+                                'flex items-center w-full ps-3 pe-4 py-2 border-l-4 text-base font-medium transition'
+                            ]"
+                        >
+                            <Calculator :size="18" class="mr-2" :stroke-width="2" />
+                            Zakaat Calculator
                         </Link>
                         <Link
                             :href="route('pricing')"

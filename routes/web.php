@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QiblaController;
+use App\Http\Controllers\ZakaatController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -32,6 +33,8 @@ Route::get('/dashboard', function () {
 
 // Public Routes - No authentication required
 Route::get('/qibla', [QiblaController::class, 'index'])->name('qibla.index');
+Route::get('/zakaat', [ZakaatController::class, 'index'])->name('zakaat.index');
+Route::post('/zakaat/calculate', [ZakaatController::class, 'calculate'])->name('zakaat.calculate');
 Route::get('/pricing', function () {
     return Inertia::render('Pricing');
 })->name('pricing');
