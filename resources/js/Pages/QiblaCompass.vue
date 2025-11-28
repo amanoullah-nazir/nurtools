@@ -314,14 +314,20 @@ onUnmounted(() => {
                                     </div>
 
                                     <!-- Degree markings -->
-                                    <div class="absolute inset-8">
-                                        <div v-for="deg in 36" :key="deg" 
-                                            class="absolute top-1/2 left-1/2 -translate-y-1/2 origin-left"
-                                            :style="{ transform: `translate(-50%, -50%) rotate(${(deg - 1) * 10}deg)`, transformOrigin: 'left center' }">
-                                            <div class="h-0.5 bg-gray-400" 
-                                                :class="deg % 9 === 1 ? 'w-8 opacity-80' : deg % 3 === 1 ? 'w-6 opacity-60' : 'w-4 opacity-40'"></div>
-                                        </div>
-                                    </div>
+                                    <svg class="absolute inset-0 w-full h-full" viewBox="0 0 400 400">
+                                        <g transform="translate(200, 200)">
+                                            <line v-for="deg in 36" :key="deg"
+                                                :x1="0" 
+                                                :y1="-160"
+                                                :x2="0" 
+                                                :y2="deg % 9 === 1 ? -140 : deg % 3 === 1 ? -145 : -150"
+                                                :transform="`rotate(${(deg - 1) * 10})`"
+                                                stroke="#9ca3af"
+                                                :stroke-width="deg % 9 === 1 ? '2' : '1'"
+                                                :opacity="deg % 3 === 1 ? '0.6' : '0.3'"
+                                            />
+                                        </g>
+                                    </svg>
                                 </div>
 
                                 <!-- Fixed Qibla Needle (points to Qibla relative to North) -->
