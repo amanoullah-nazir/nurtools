@@ -22,10 +22,18 @@ const maxRetries = 3;
 
 // Computed
 const qiblaDirection = computed(() => {
-    if (!userLocation.value || !deviceHeading.value === null) return 0;
+    if (!userLocation.value || deviceHeading.value === null) return 0;
     // Calculate the direction the compass needle should point
-    // This is the difference between Qibla bearing and device heading
-    return qiblaBearing.value - deviceHeading.value;
+    // Subtract device heading from Qibla bearing to get relative direction
+    let direction = qiblaBearing.value - deviceHeading.value;
+    // Normalize to 0-360 range
+    direction = ((direction % 360) + 360) % 360;
+    return direction;
+});
+
+const compassRotation = computed(() => {
+    // Rotate the entire compass to match device heading
+    return -deviceHeading.value;
 });
 
 const formattedDistance = computed(() => {
@@ -120,12 +128,27 @@ const calculateQibla = async () => {
 
 // Handle device orientation
 const handleOrientation = (event) => {
-    if (event.webkitCompassHeading) {
-        // iOS Safari
-        deviceHeading.value = event.webkitCompassHeading;
+    let heading = null;
+    
+    if (event.webkitCompassHeading !== undefined) {
+        // iOS Safari - webkitCompassHeading gives true heading
+        heading = event.webkitCompassHeading;
     } else if (event.alpha !== null) {
-        // Android Chrome
-        deviceHeading.value = 360 - event.alpha;
+        // Android Chrome - use alpha for heading
+        // Alpha ranges from 0-360 where 0/360 is North
+        heading = 360 - event.alpha;
+        
+        // Adjust for absolute orientation if available
+        if (event.absolute && event.webkitCompassAccuracy !== undefined) {
+            heading = event.alpha;
+        }
+    }
+    
+    if (heading !== null) {
+        // Normalize to 0-360
+        heading = ((heading % 360) + 360) % 360;
+        deviceHeading.value = heading;
+        calibrating.value = false;
     }
 };
 
@@ -275,52 +298,89 @@ onUnmounted(() => {
 
                             <!-- Compass Circle -->
                             <div class="relative w-80 h-80 sm:w-96 sm:h-96">
-                                <!-- Compass Background -->
-                                <div class="absolute inset-0 rounded-full border-8 border-emerald-600 bg-gradient-to-br from-emerald-50 to-white shadow-2xl">
+                                <!-- Compass Background with Cardinal Directions (rotates with device) -->
+                                <div 
+                                    class="absolute inset-0 rounded-full border-8 border-emerald-600 bg-gradient-to-br from-emerald-50 to-white shadow-2xl transition-transform duration-300 ease-out"
+                                    :style="{ transform: `rotate(${compassRotation}deg)` }"
+                                >
                                     <!-- Cardinal directions -->
                                     <div class="absolute inset-0 flex items-center justify-center">
                                         <div class="relative w-full h-full">
-                                            <div class="absolute top-2 left-1/2 -translate-x-1/2 font-bold text-emerald-800">N</div>
-                                            <div class="absolute bottom-2 left-1/2 -translate-x-1/2 font-bold text-gray-600">S</div>
-                                            <div class="absolute left-2 top-1/2 -translate-y-1/2 font-bold text-gray-600">W</div>
-                                            <div class="absolute right-2 top-1/2 -translate-y-1/2 font-bold text-gray-600">E</div>
+                                            <div class="absolute top-4 left-1/2 -translate-x-1/2 font-bold text-2xl text-emerald-800">N</div>
+                                            <div class="absolute bottom-4 left-1/2 -translate-x-1/2 font-bold text-xl text-gray-600">S</div>
+                                            <div class="absolute left-4 top-1/2 -translate-y-1/2 font-bold text-xl text-gray-600">W</div>
+                                            <div class="absolute right-4 top-1/2 -translate-y-1/2 font-bold text-xl text-gray-600">E</div>
                                         </div>
                                     </div>
 
-                                    <!-- Qibla Needle -->
-                                    <div 
-                                        class="absolute inset-0 flex items-center justify-center transition-transform duration-300 ease-out"
-                                        :style="{ transform: `rotate(${qiblaDirection}deg)` }"
-                                    >
-                                        <div class="relative">
-                                            <!-- North (red) part of needle -->
-                                            <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[15px] border-l-transparent border-r-[15px] border-r-transparent border-b-[120px] border-b-emerald-600"></div>
-                                            <!-- South (white) part of needle -->
-                                            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[15px] border-l-transparent border-r-[15px] border-r-transparent border-t-[120px] border-t-gray-300"></div>
-                                            <!-- Center dot -->
-                                            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full border-2 border-emerald-800"></div>
+                                    <!-- Degree markings -->
+                                    <div class="absolute inset-4">
+                                        <div v-for="deg in 36" :key="deg" 
+                                            class="absolute top-1/2 left-1/2 origin-left"
+                                            :style="{ transform: `translate(-50%, -50%) rotate(${deg * 10}deg)` }">
+                                            <div class="w-32 h-0.5 bg-gray-400" 
+                                                :class="deg % 3 === 0 ? 'opacity-80' : 'opacity-30'"></div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <!-- Kaaba Icon -->
-                                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-emerald-800 pointer-events-none">
-                                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M12 2L4 6v6c0 5.55 3.84 10.74 8 12 4.16-1.26 8-6.45 8-12V6l-8-4zm0 2.18l6 3v4.82c0 4.52-3.13 8.75-6 9.82-2.87-1.07-6-5.3-6-9.82V7.18l6-3z"/>
-                                    </svg>
+                                <!-- Fixed Qibla Needle (points to Qibla relative to North) -->
+                                <div 
+                                    class="absolute inset-0 flex items-center justify-center transition-transform duration-500 ease-out pointer-events-none"
+                                    :style="{ transform: `rotate(${qiblaBearing}deg)` }"
+                                >
+                                    <div class="relative">
+                                        <!-- Qibla direction indicator (green arrow pointing to Kaaba) -->
+                                        <div class="absolute bottom-0 left-1/2 -translate-x-1/2">
+                                            <svg class="w-12 h-32" viewBox="0 0 48 128" fill="none">
+                                                <!-- Arrow shaft -->
+                                                <rect x="18" y="20" width="12" height="80" fill="#059669" rx="2"/>
+                                                <!-- Arrow head -->
+                                                <path d="M24 0 L48 28 L24 20 L0 28 Z" fill="#059669"/>
+                                                <!-- Kaaba icon at base -->
+                                                <circle cx="24" cy="110" r="14" fill="#047857"/>
+                                                <rect x="18" y="104" width="12" height="12" fill="white" opacity="0.9"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Center circle -->
+                                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-white rounded-full border-4 border-emerald-800 shadow-lg z-10"></div>
+
+                                <!-- Device heading indicator (fixed at top) -->
+                                <div class="absolute top-2 left-1/2 -translate-x-1/2 z-20">
+                                    <div class="w-1 h-6 bg-red-600 rounded-full shadow-lg"></div>
                                 </div>
                             </div>
 
                             <!-- Bearing Info -->
-                            <div class="mt-8 text-center">
-                                <div class="flex items-center justify-center gap-2 mb-2">
-                                    <Navigation :size="20" class="text-gray-600" :stroke-width="2" />
-                                    <p class="text-sm text-gray-600">Qibla Direction</p>
+                            <div class="mt-8 grid grid-cols-2 gap-4 w-full max-w-md">
+                                <div class="text-center p-4 bg-emerald-50 rounded-lg border border-emerald-200">
+                                    <div class="flex items-center justify-center gap-2 mb-2">
+                                        <Navigation :size="18" class="text-emerald-600" :stroke-width="2" />
+                                        <p class="text-xs font-medium text-emerald-700">Qibla</p>
+                                    </div>
+                                    <p class="text-2xl font-bold text-emerald-600">
+                                        {{ qiblaBearing.toFixed(1) }}°
+                                    </p>
                                 </div>
-                                <p class="text-3xl font-bold text-emerald-600">
-                                    {{ qiblaBearing.toFixed(1) }}°
+                                <div class="text-center p-4 bg-gray-50 rounded-lg border border-gray-200">
+                                    <div class="flex items-center justify-center gap-2 mb-2">
+                                        <Navigation :size="18" class="text-gray-600" :stroke-width="2" />
+                                        <p class="text-xs font-medium text-gray-700">Heading</p>
+                                    </div>
+                                    <p class="text-2xl font-bold text-gray-600">
+                                        {{ deviceHeading.toFixed(1) }}°
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Instructions -->
+                            <div class="mt-4 text-center">
+                                <p class="text-sm text-gray-600">
+                                    Hold your device flat and rotate until the green arrow points up
                                 </p>
-                                <p class="text-xs text-gray-500 mt-2">Point your device towards this direction</p>
                             </div>
 
                             <!-- Calibration Notice -->
