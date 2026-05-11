@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://amanoullah-nazir.github.io/nurtools/sitemap.xml
