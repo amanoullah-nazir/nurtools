@@ -892,6 +892,8 @@
       var placeholder = img.nextElementSibling;
       if (placeholder) {
         placeholder.classList.remove('hidden');
+        var frame = img.closest('.phone-frame');
+        if (frame) { frame.style.cursor = 'pointer'; }
       }
     }
 
