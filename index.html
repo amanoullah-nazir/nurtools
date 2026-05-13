@@ -198,14 +198,14 @@
             <span id="lang-code" class="font-medium">EN</span>
             <svg class="w-3.5 h-3.5 text-gray-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
           </button>
-          <div id="lang-menu" role="listbox" class="hidden absolute right-0 top-full mt-1 bg-white border border-gray-100 rounded-xl shadow-lg py-1 z-50">
-            <button data-lang="en"  class="lang-option" role="option">🌐 English</button>
-            <button data-lang="ar"  class="lang-option" role="option">🇸🇦 العربية</button>
-            <button data-lang="fr"  class="lang-option" role="option">🇫🇷 Français</button>
-            <button data-lang="id"  class="lang-option" role="option">🇮🇩 Indonesia</button>
-            <button data-lang="ur"  class="lang-option" role="option">🇵🇰 اردو</button>
-            <button data-lang="tr"  class="lang-option" role="option">🇹🇷 Türkçe</button>
-            <button data-lang="ms"  class="lang-option" role="option">🇲🇾 Melayu</button>
+          <div id="lang-menu" role="menu" class="hidden absolute right-0 top-full mt-1 bg-white border border-gray-100 rounded-xl shadow-lg py-1 z-50">
+            <button data-lang="en"  class="lang-option" role="menuitem">🌐 English</button>
+            <button data-lang="ar"  class="lang-option" role="menuitem">🇸🇦 العربية</button>
+            <button data-lang="fr"  class="lang-option" role="menuitem">🇫🇷 Français</button>
+            <button data-lang="id"  class="lang-option" role="menuitem">🇮🇩 Indonesia</button>
+            <button data-lang="ur"  class="lang-option" role="menuitem">🇵🇰 اردو</button>
+            <button data-lang="tr"  class="lang-option" role="menuitem">🇹🇷 Türkçe</button>
+            <button data-lang="ms"  class="lang-option" role="menuitem">🇲🇾 Melayu</button>
           </div>
         </div>
         <a
@@ -1235,6 +1235,8 @@
         html.dir = 'ltr';
       }
 
+      // All translation values are static strings defined in this file only —
+      // no external or user-controlled input is ever assigned via innerHTML.
       document.querySelectorAll('[data-i18n]').forEach(function (el) {
         var key = el.getAttribute('data-i18n');
         if (t[key] !== undefined) {
@@ -1248,7 +1250,7 @@
       if (flagEl) { flagEl.textContent = meta.flag; }
       if (codeEl) { codeEl.textContent = meta.code; }
 
-      try { localStorage.setItem('nurtools-lang', lang); } catch (e) {}
+      try { localStorage.setItem('nurtools-lang', lang); } catch (e) { /* localStorage unavailable */ }
     }
 
     // Language switcher
@@ -1277,7 +1279,7 @@
 
       // Init: saved preference → browser language → English
       var saved = '';
-      try { saved = localStorage.getItem('nurtools-lang') || ''; } catch (e) {}
+      try { saved = localStorage.getItem('nurtools-lang') || ''; } catch (e) { /* localStorage unavailable (e.g. private browsing) */ }
       var browser = (navigator.language || 'en').split('-')[0];
       var initLang = (saved && TRANSLATIONS[saved]) ? saved
                    : (TRANSLATIONS[browser]         ? browser
