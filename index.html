@@ -184,6 +184,27 @@
     }
     .phone-placeholder.hidden { display: none; }
     .phone-shell img.hidden { display: none; }
+    /* Lightbox */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(0,0,0,0.9);
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+    }
+    #lightbox.open { display: flex; }
+    #lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 16px;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.1);
+    }
+    .phone-frame { cursor: zoom-in; }
+
     /* Go-to-top button */
     #go-top {
       position: fixed;
@@ -267,7 +288,7 @@
             <svg class="w-3.5 h-3.5 text-gray-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
           </button>
           <div id="lang-menu" role="menu" class="hidden absolute right-0 top-full mt-1 bg-white border border-gray-100 rounded-xl shadow-lg py-1 z-50">
-            <button data-lang="en"  class="lang-option" role="menuitem">🌐 English</button>
+            <button data-lang="en"  class="lang-option" role="menuitem">🇬🇧 English</button>
             <button data-lang="ar"  class="lang-option" role="menuitem">🇸🇦 العربية</button>
             <button data-lang="fr"  class="lang-option" role="menuitem">🇫🇷 Français</button>
             <button data-lang="id"  class="lang-option" role="menuitem">🇮🇩 Indonesia</button>
@@ -491,9 +512,9 @@
 
   <!-- ───────────── SCREENSHOTS ───────────── -->
   <section class="max-w-5xl mx-auto px-5 py-20">
-    <p class="text-sm font-semibold uppercase tracking-widest text-emerald-600 text-center mb-2">See it in action</p>
-    <h2 class="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-3">A beautiful app for every act of worship</h2>
-    <p class="text-center text-gray-500 mb-10 max-w-xl mx-auto">Clean, distraction-free screens designed to help you focus on what matters.</p>
+    <p class="text-sm font-semibold uppercase tracking-widest text-emerald-600 text-center mb-2" data-i18n="screenshots.eyebrow">See it in action</p>
+    <h2 class="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-3" data-i18n="screenshots.h2">A beautiful app for every act of worship</h2>
+    <p class="text-center text-gray-500 mb-10 max-w-xl mx-auto" data-i18n="screenshots.p">Clean, distraction-free screens designed to help you focus on what matters.</p>
 
     <div class="screenshots-track">
 
@@ -513,10 +534,10 @@
               <path d="M12 2v4M12 18v4M2 12h4M18 12h4"/>
               <circle cx="12" cy="12" r="2" fill="#059669" stroke="none"/>
             </svg>
-            <span>Qibla Compass</span>
+            <span data-i18n="screenshots.qibla">Qibla Compass</span>
           </div>
         </div>
-        <p class="mt-3 text-center text-xs font-medium text-gray-600">Qibla Compass</p>
+        <p class="mt-3 text-center text-xs font-medium text-gray-600" data-i18n="screenshots.qibla">Qibla Compass</p>
       </div>
 
       <!-- Prayer Times -->
@@ -534,10 +555,10 @@
               <circle cx="12" cy="12" r="10"/>
               <polyline points="12 6 12 12 16 14"/>
             </svg>
-            <span>Prayer Times</span>
+            <span data-i18n="screenshots.prayer">Prayer Times</span>
           </div>
         </div>
-        <p class="mt-3 text-center text-xs font-medium text-gray-600">Prayer Times</p>
+        <p class="mt-3 text-center text-xs font-medium text-gray-600" data-i18n="screenshots.prayer">Prayer Times</p>
       </div>
 
       <!-- Zakaat Calculator -->
@@ -557,10 +578,10 @@
               <line x1="12" y1="12" x2="12" y2="16"/>
               <line x1="10" y1="14" x2="14" y2="14"/>
             </svg>
-            <span>Zakaat Calculator</span>
+            <span data-i18n="screenshots.zakaat">Zakaat Calculator</span>
           </div>
         </div>
-        <p class="mt-3 text-center text-xs font-medium text-gray-600">Zakaat Calculator</p>
+        <p class="mt-3 text-center text-xs font-medium text-gray-600" data-i18n="screenshots.zakaat">Zakaat Calculator</p>
       </div>
 
       <!-- Tasbih Counter -->
@@ -577,10 +598,10 @@
             <svg class="w-10 h-10 stroke-emerald-600" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M18.178 8c5.096 0 5.096 8 0 8-5.095 0-7.133-8-12.739-8C.343 8 .343 16 5.44 16c5.095 0 7.133-8 12.738-8z"/>
             </svg>
-            <span>Tasbih Counter</span>
+            <span data-i18n="screenshots.tasbih">Tasbih Counter</span>
           </div>
         </div>
-        <p class="mt-3 text-center text-xs font-medium text-gray-600">Tasbih Counter</p>
+        <p class="mt-3 text-center text-xs font-medium text-gray-600" data-i18n="screenshots.tasbih">Tasbih Counter</p>
       </div>
 
       <!-- Du'a Library -->
@@ -588,7 +609,7 @@
         <div class="phone-shell">
           <div class="phone-notch" aria-hidden="true"></div>
           <img
-            src="https://play-lh.googleusercontent.com/placeholder-dua"
+            src="https://github.com/user-attachments/assets/eb9a76dd-21a6-4d85-844e-3cc0ff962409"
             alt="Du'a Library screen"
             loading="lazy"
             onerror="showScreenshotPlaceholder(this)"
@@ -598,10 +619,10 @@
               <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
               <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
             </svg>
-            <span>Du'a Library</span>
+            <span data-i18n="screenshots.dua">Du'a Library</span>
           </div>
         </div>
-        <p class="mt-3 text-center text-xs font-medium text-gray-600">Du'a Library</p>
+        <p class="mt-3 text-center text-xs font-medium text-gray-600" data-i18n="screenshots.dua">Du'a Library</p>
       </div>
 
       <!-- Islamic Calendar -->
@@ -609,7 +630,7 @@
         <div class="phone-shell">
           <div class="phone-notch" aria-hidden="true"></div>
           <img
-            src="https://play-lh.googleusercontent.com/placeholder-calendar"
+            src="https://github.com/user-attachments/assets/b1304a3e-df83-4d14-ab1a-394c30113f7f"
             alt="Islamic Calendar screen"
             loading="lazy"
             onerror="showScreenshotPlaceholder(this)"
@@ -621,10 +642,10 @@
               <line x1="8" y1="2" x2="8" y2="6"/>
               <line x1="3" y1="10" x2="21" y2="10"/>
             </svg>
-            <span>Islamic Calendar</span>
+            <span data-i18n="screenshots.calendar">Islamic Calendar</span>
           </div>
         </div>
-        <p class="mt-3 text-center text-xs font-medium text-gray-600">Islamic Calendar</p>
+        <p class="mt-3 text-center text-xs font-medium text-gray-600" data-i18n="screenshots.calendar">Islamic Calendar</p>
       </div>
 
       <!-- Asma ul Husna -->
@@ -632,7 +653,7 @@
         <div class="phone-shell">
           <div class="phone-notch" aria-hidden="true"></div>
           <img
-            src="https://play-lh.googleusercontent.com/placeholder-asma"
+            src="https://github.com/user-attachments/assets/175c43cf-5751-468d-a090-90086a0dfb68"
             alt="Asma ul Husna screen"
             loading="lazy"
             onerror="showScreenshotPlaceholder(this)"
@@ -642,12 +663,28 @@
               <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
               <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
             </svg>
-            <span>Asma ul Husna</span>
+            <span data-i18n="screenshots.asma">Asma ul Husna</span>
           </div>
         </div>
-        <p class="mt-3 text-center text-xs font-medium text-gray-600">Asma ul Husna</p>
+        <p class="mt-3 text-center text-xs font-medium text-gray-600" data-i18n="screenshots.asma">Asma ul Husna</p>
       </div>
 
+    </div>
+
+    <p class="text-center mt-6">
+      <a
+        href="https://play.google.com/store/apps/details?id=com.amanoullahnazir.nurtools"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 hover:text-emerald-800 transition-colors"
+        aria-label="View Nurtools on Google Play"
+        data-i18n="screenshots.view_play"
+      >
+        View on Google Play
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      </a>
+    </p>
+  </section>
     </div>
 
     <p class="text-center mt-6">
@@ -850,6 +887,11 @@
     </div>
   </footer>
 
+  <!-- Lightbox -->
+  <div id="lightbox" role="dialog" aria-modal="true" aria-label="Screenshot preview">
+    <img id="lightbox-img" src="" alt="App screenshot" />
+  </div>
+
   <!-- Go-to-top button -->
   <button id="go-top" aria-label="Back to top" title="Back to top">
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -973,7 +1015,18 @@
         'footer.play': 'Google Play',
         'footer.features': 'Features',
         'footer.contact': 'Contact',
-        'footer.copyright': 'Nurtools. All rights reserved.'
+        'footer.copyright': 'Nurtools. All rights reserved.',
+        'screenshots.eyebrow': 'See it in action',
+        'screenshots.h2': 'A beautiful app for every act of worship',
+        'screenshots.p': 'Clean, distraction-free screens designed to help you focus on what matters.',
+        'screenshots.view_play': 'View on Google Play',
+        'screenshots.qibla': 'Qibla Compass',
+        'screenshots.prayer': 'Prayer Times',
+        'screenshots.zakaat': 'Zakaat Calculator',
+        'screenshots.tasbih': 'Tasbih Counter',
+        'screenshots.dua': "Du\u2019a Library",
+        'screenshots.calendar': 'Islamic Calendar',
+        'screenshots.asma': 'Asma ul Husna'
       },
 
       // ── Arabic ──────────────────────────────────────────────────────────────────
@@ -1054,7 +1107,18 @@
         'footer.play': 'Google Play',
         'footer.features': 'الميزات',
         'footer.contact': 'تواصل معنا',
-        'footer.copyright': 'Nurtools. جميع الحقوق محفوظة.'
+        'footer.copyright': 'Nurtools. جميع الحقوق محفوظة.',
+        'screenshots.eyebrow': 'شاهده في العمل',
+        'screenshots.h2': 'تطبيق جميل لكل عبادة',
+        'screenshots.p': 'شاشات نظيفة وخالية من المشتتات مصممة لمساعدتك على التركيز فيما يهمك.',
+        'screenshots.view_play': 'عرض على Google Play',
+        'screenshots.qibla': 'بوصلة القبلة',
+        'screenshots.prayer': 'أوقات الصلاة',
+        'screenshots.zakaat': 'حاسبة الزكاة',
+        'screenshots.tasbih': 'عداد التسبيح',
+        'screenshots.dua': 'مكتبة الأدعية',
+        'screenshots.calendar': 'التقويم الإسلامي',
+        'screenshots.asma': 'أسماء الله الحسنى'
       },
 
       // ── French ──────────────────────────────────────────────────────────────────
@@ -1135,7 +1199,18 @@
         'footer.play': 'Google Play',
         'footer.features': 'Fonctionnalités',
         'footer.contact': 'Contact',
-        'footer.copyright': 'Nurtools. Tous droits réservés.'
+        'footer.copyright': 'Nurtools. Tous droits réservés.',
+        'screenshots.eyebrow': "Découvrez l'application",
+        'screenshots.h2': "Une belle application pour chaque acte d'adoration",
+        'screenshots.p': "Des écrans épurés et sans distraction, conçus pour vous aider à vous concentrer sur l'essentiel.",
+        'screenshots.view_play': 'Voir sur Google Play',
+        'screenshots.qibla': 'Boussole Qibla',
+        'screenshots.prayer': 'Horaires de Prière',
+        'screenshots.zakaat': 'Calculatrice de Zakat',
+        'screenshots.tasbih': 'Compteur Tasbih',
+        'screenshots.dua': "Biblioth\u00e8que de Du\u2019as",
+        'screenshots.calendar': 'Calendrier Islamique',
+        'screenshots.asma': 'Asma ul Husna'
       },
 
       // ── Indonesian ──────────────────────────────────────────────────────────────
@@ -1216,7 +1291,18 @@
         'footer.play': 'Google Play',
         'footer.features': 'Fitur',
         'footer.contact': 'Kontak',
-        'footer.copyright': 'Nurtools. Hak cipta dilindungi.'
+        'footer.copyright': 'Nurtools. Hak cipta dilindungi.',
+        'screenshots.eyebrow': 'Lihat langsung',
+        'screenshots.h2': 'Aplikasi indah untuk setiap ibadah',
+        'screenshots.p': 'Tampilan bersih dan bebas gangguan yang dirancang untuk membantu Anda fokus pada yang penting.',
+        'screenshots.view_play': 'Lihat di Google Play',
+        'screenshots.qibla': 'Kompas Kiblat',
+        'screenshots.prayer': 'Waktu Shalat',
+        'screenshots.zakaat': 'Kalkulator Zakat',
+        'screenshots.tasbih': 'Penghitung Tasbih',
+        'screenshots.dua': 'Pustaka Doa',
+        'screenshots.calendar': 'Kalender Islam',
+        'screenshots.asma': 'Asma ul Husna'
       },
 
       // ── Urdu ────────────────────────────────────────────────────────────────────
@@ -1297,7 +1383,18 @@
         'footer.play': 'Google Play',
         'footer.features': 'خصوصیات',
         'footer.contact': 'رابطہ کریں',
-        'footer.copyright': 'Nurtools. تمام حقوق محفوظ ہیں۔'
+        'footer.copyright': 'Nurtools. تمام حقوق محفوظ ہیں۔',
+        'screenshots.eyebrow': 'عملی نظارہ',
+        'screenshots.h2': 'ہر عبادت کے لیے ایک خوبصورت ایپ',
+        'screenshots.p': 'صاف اور خلفشار سے پاک اسکرینیں جو آپ کی توجہ اہم چیز پر مرکوز رکھنے کے لیے بنائی گئی ہیں۔',
+        'screenshots.view_play': 'Google Play پر دیکھیں',
+        'screenshots.qibla': 'قبلہ کمپاس',
+        'screenshots.prayer': 'نماز کے اوقات',
+        'screenshots.zakaat': 'زکوٰۃ کیلکولیٹر',
+        'screenshots.tasbih': 'تسبیح کاؤنٹر',
+        'screenshots.dua': 'دعاؤں کی لائبریری',
+        'screenshots.calendar': 'اسلامی کیلنڈر',
+        'screenshots.asma': 'اسمائے حسنیٰ'
       },
 
       // ── Turkish ─────────────────────────────────────────────────────────────────
@@ -1378,7 +1475,18 @@
         'footer.play': 'Google Play',
         'footer.features': 'Özellikler',
         'footer.contact': 'İletişim',
-        'footer.copyright': 'Nurtools. Tüm hakları saklıdır.'
+        'footer.copyright': 'Nurtools. Tüm hakları saklıdır.',
+        'screenshots.eyebrow': 'Uygulamayı görün',
+        'screenshots.h2': 'Her ibadet için güzel bir uygulama',
+        'screenshots.p': 'Önemli olana odaklanmanıza yardımcı olmak için tasarlanmış sade ve dikkat dağıtıcısız ekranlar.',
+        'screenshots.view_play': "Google Play'de görüntüle",
+        'screenshots.qibla': 'Kıble Pusulası',
+        'screenshots.prayer': 'Namaz Vakitleri',
+        'screenshots.zakaat': 'Zekat Hesaplayıcı',
+        'screenshots.tasbih': 'Tesbih Sayacı',
+        'screenshots.dua': 'Dua Kitaplığı',
+        'screenshots.calendar': 'İslam Takvimi',
+        'screenshots.asma': "Esma\u00fc'l-H\u00fcsna"
       },
 
       // ── Malay ───────────────────────────────────────────────────────────────────
@@ -1459,14 +1567,25 @@
         'footer.play': 'Google Play',
         'footer.features': 'Ciri-ciri',
         'footer.contact': 'Hubungi',
-        'footer.copyright': 'Nurtools. Hak cipta terpelihara.'
+        'footer.copyright': 'Nurtools. Hak cipta terpelihara.',
+        'screenshots.eyebrow': 'Lihat dalam tindakan',
+        'screenshots.h2': 'Aplikasi yang indah untuk setiap ibadah',
+        'screenshots.p': 'Skrin yang bersih dan bebas gangguan, direka untuk membantu anda fokus pada perkara yang penting.',
+        'screenshots.view_play': 'Lihat di Google Play',
+        'screenshots.qibla': 'Kompas Kiblat',
+        'screenshots.prayer': 'Waktu Solat',
+        'screenshots.zakaat': 'Kalkulator Zakat',
+        'screenshots.tasbih': 'Penghitung Tasbih',
+        'screenshots.dua': 'Perpustakaan Doa',
+        'screenshots.calendar': 'Kalendar Islam',
+        'screenshots.asma': 'Asma ul Husna'
       }
     };
 
     var RTL_LANGS = { ar: true, ur: true };
 
     var LANG_META = {
-      en: { flag: '🌐', code: 'EN' },
+      en: { flag: '🇬🇧', code: 'EN' },
       ar: { flag: '🇸🇦', code: 'AR' },
       fr: { flag: '🇫🇷', code: 'FR' },
       id: { flag: '🇮🇩', code: 'ID' },
@@ -1536,6 +1655,44 @@
                    : (TRANSLATIONS[browser]         ? browser
                    :                                  'en');
       applyLang(initLang);
+    })();
+
+    // ─── Lightbox ────────────────────────────────────────────────────────────────
+    (function () {
+      var lb    = document.getElementById('lightbox');
+      var lbImg = document.getElementById('lightbox-img');
+      var playUrl = 'https://play.google.com/store/apps/details?id=com.amanoullahnazir.nurtools';
+
+      function openLightbox(src) {
+        lbImg.src = src;
+        lb.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeLightbox() {
+        lb.classList.remove('open');
+        document.body.style.overflow = '';
+        lbImg.src = '';
+      }
+
+      document.querySelectorAll('.phone-frame').forEach(function (frame) {
+        frame.addEventListener('click', function () {
+          var img = frame.querySelector('.phone-shell img');
+          if (img && !img.classList.contains('hidden')) {
+            openLightbox(img.src);
+          } else {
+            window.open(playUrl, '_blank', 'noopener,noreferrer');
+          }
+        });
+      });
+
+      lb.addEventListener('click', closeLightbox);
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && lb.classList.contains('open')) {
+          closeLightbox();
+        }
+      });
     })();
   </script>
 </body>
