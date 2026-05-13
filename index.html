@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" dir="ltr" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -83,6 +83,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
     .hero-gradient {
@@ -154,6 +155,29 @@
       50%       { transform: translateY(-6px) scale(1.05); }
     }
     #go-top.bounce { animation: bounce-up 0.6s ease-in-out; }
+
+    /* RTL overrides */
+    [dir="rtl"] #go-top { right: auto; left: 1.5rem; }
+    [dir="rtl"] .font-sans { font-family: 'Noto Naskh Arabic', 'Inter', ui-sans-serif, system-ui, sans-serif; }
+
+    /* Language switcher */
+    #lang-menu { min-width: 160px; }
+    .lang-option {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      width: 100%;
+      text-align: left;
+      padding: 0.45rem 1rem;
+      font-size: 0.875rem;
+      color: #374151;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .lang-option:hover { background-color: #f9fafb; color: #059669; }
+    [dir="rtl"] .lang-option { text-align: right; }
   </style>
 </head>
 
@@ -166,15 +190,35 @@
         <img src="assets/icon.png" alt="Nurtools logo" class="w-9 h-9 rounded-xl shadow-sm" />
         <span class="font-bold text-lg text-emerald-700 tracking-tight">Nurtools</span>
       </div>
-      <a
-        href="https://play.google.com/store/apps/details?id=com.amanoullahnazir.nurtools"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors"
-        aria-label="Download Nurtools on Google Play"
-      >
-        Free Download ↓
-      </a>
+      <div class="flex items-center gap-2">
+        <!-- Language switcher -->
+        <div class="relative" id="lang-switcher">
+          <button id="lang-btn" class="flex items-center gap-1 text-sm text-gray-600 hover:text-emerald-600 px-2 py-1.5 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Change language" aria-haspopup="listbox" aria-expanded="false">
+            <span id="lang-flag" aria-hidden="true">🌐</span>
+            <span id="lang-code" class="font-medium">EN</span>
+            <svg class="w-3.5 h-3.5 text-gray-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div id="lang-menu" role="listbox" class="hidden absolute right-0 top-full mt-1 bg-white border border-gray-100 rounded-xl shadow-lg py-1 z-50">
+            <button data-lang="en"  class="lang-option" role="option">🌐 English</button>
+            <button data-lang="ar"  class="lang-option" role="option">🇸🇦 العربية</button>
+            <button data-lang="fr"  class="lang-option" role="option">🇫🇷 Français</button>
+            <button data-lang="id"  class="lang-option" role="option">🇮🇩 Indonesia</button>
+            <button data-lang="ur"  class="lang-option" role="option">🇵🇰 اردو</button>
+            <button data-lang="tr"  class="lang-option" role="option">🇹🇷 Türkçe</button>
+            <button data-lang="ms"  class="lang-option" role="option">🇲🇾 Melayu</button>
+          </div>
+        </div>
+        <a
+          href="https://play.google.com/store/apps/details?id=com.amanoullahnazir.nurtools"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors"
+          aria-label="Download Nurtools on Google Play"
+          data-i18n="nav.download"
+        >
+          Free Download ↓
+        </a>
+      </div>
     </div>
   </header>
 
@@ -185,7 +229,7 @@
       <!-- Social proof badge -->
       <div class="inline-flex items-center gap-2 bg-white/15 border border-white/25 text-white text-sm font-medium px-4 py-1.5 rounded-full backdrop-blur">
         <span class="star text-base">★★★★★</span>
-        <span>Free &amp; Ad-Free · Android</span>
+        <span data-i18n="hero.badge">Free &amp; Ad-Free · Android</span>
       </div>
 
       <img
@@ -195,11 +239,11 @@
       />
 
       <div>
-        <h1 class="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight">
+        <h1 class="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight" data-i18n="hero.h1">
           Never Miss a Prayer.<br class="hidden sm:block" />
           Always Face the Qiblah.
         </h1>
-        <p class="mt-4 text-emerald-100 text-lg md:text-xl max-w-xl mx-auto leading-relaxed">
+        <p class="mt-4 text-emerald-100 text-lg md:text-xl max-w-xl mx-auto leading-relaxed" data-i18n="hero.p">
           One free app that handles your Qibla compass, prayer times, Zakaat calculation, Tasbih, Du'as, and Hijri calendar - beautifully, accurately, and offline.
         </p>
       </div>
@@ -216,14 +260,14 @@
           <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.49 1.49 0 0 0-.227.819v20.51c0 .33.094.638.257.9l11.05-11.064L1.337.924zm10.992 11.164L3.095 23.095c.254.073.527.073.78-.008l13.05-7.4-4.596-4.599zM3.875.125L16.91 7.555l-4.57 4.549L3.875.125z"/>
           </svg>
-          Download Free on Google Play
+          <span data-i18n="hero.cta">Download Free on Google Play</span>
         </a>
         <!-- Micro-trust signals -->
         <p class="text-emerald-100/80 text-xs flex flex-wrap justify-center gap-x-3 gap-y-1">
-          <span>✓ 100% Free</span>
-          <span>✓ No Ads</span>
-          <span>✓ No Sign-Up</span>
-          <span>✓ Works Offline</span>
+          <span data-i18n="hero.trust1">✓ 100% Free</span>
+          <span data-i18n="hero.trust2">✓ No Ads</span>
+          <span data-i18n="hero.trust3">✓ No Sign-Up</span>
+          <span data-i18n="hero.trust4">✓ Works Offline</span>
         </p>
       </div>
     </div>
@@ -234,20 +278,20 @@
     <div class="max-w-4xl mx-auto px-5">
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
         <div>
-          <p class="text-2xl font-extrabold text-emerald-700">8+</p>
-          <p class="text-xs text-gray-500 mt-1 uppercase tracking-wide font-medium">Islamic Tools</p>
+          <p class="text-2xl font-extrabold text-emerald-700" data-i18n="trust.tools">8+</p>
+          <p class="text-xs text-gray-500 mt-1 uppercase tracking-wide font-medium" data-i18n="trust.tools.label">Islamic Tools</p>
         </div>
         <div>
           <p class="text-2xl font-extrabold text-emerald-700">★★★★★</p>
-          <p class="text-xs text-gray-500 mt-1 uppercase tracking-wide font-medium">Play Store Rating</p>
+          <p class="text-xs text-gray-500 mt-1 uppercase tracking-wide font-medium" data-i18n="trust.rating.label">Play Store Rating</p>
         </div>
         <div>
-          <p class="text-2xl font-extrabold text-emerald-700">0 Ads</p>
-          <p class="text-xs text-gray-500 mt-1 uppercase tracking-wide font-medium">Forever Ad-Free</p>
+          <p class="text-2xl font-extrabold text-emerald-700" data-i18n="trust.ads">0 Ads</p>
+          <p class="text-xs text-gray-500 mt-1 uppercase tracking-wide font-medium" data-i18n="trust.ads.label">Forever Ad-Free</p>
         </div>
         <div>
-          <p class="text-2xl font-extrabold text-emerald-700">Offline</p>
-          <p class="text-xs text-gray-500 mt-1 uppercase tracking-wide font-medium">Works Anywhere</p>
+          <p class="text-2xl font-extrabold text-emerald-700" data-i18n="trust.offline">Offline</p>
+          <p class="text-xs text-gray-500 mt-1 uppercase tracking-wide font-medium" data-i18n="trust.offline.label">Works Anywhere</p>
         </div>
       </div>
     </div>
@@ -255,9 +299,9 @@
 
   <!-- ───────────── FEATURES ───────────── -->
   <section id="features" class="max-w-5xl mx-auto px-5 py-20">
-    <p class="text-sm font-semibold uppercase tracking-widest text-emerald-600 text-center mb-2">What's inside</p>
-    <h2 class="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-3">Everything a Muslim needs, daily</h2>
-    <p class="text-center text-gray-500 mb-12 max-w-xl mx-auto">Six precision tools built for accuracy, speed, and simplicity - no bloat, no distractions.</p>
+    <p class="text-sm font-semibold uppercase tracking-widest text-emerald-600 text-center mb-2" data-i18n="feat.eyebrow">What's inside</p>
+    <h2 class="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-3" data-i18n="feat.h2">Everything a Muslim needs, daily</h2>
+    <p class="text-center text-gray-500 mb-12 max-w-xl mx-auto" data-i18n="feat.p">Six precision tools built for accuracy, speed, and simplicity - no bloat, no distractions.</p>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
 
@@ -270,8 +314,8 @@
             <circle cx="12" cy="12" r="2" class="fill-icon" fill="#059669" stroke="none"/>
           </svg>
         </div>
-        <h3 class="font-semibold text-gray-900 text-base mb-1">Qibla Compass</h3>
-        <p class="text-gray-500 text-sm leading-relaxed">Know exactly where to face - instantly. Real-time GPS compass with calibration guidance so you can pray with confidence anywhere in the world.</p>
+        <h3 class="font-semibold text-gray-900 text-base mb-1" data-i18n="feat.qibla.h3">Qibla Compass</h3>
+        <p class="text-gray-500 text-sm leading-relaxed" data-i18n="feat.qibla.p">Know exactly where to face - instantly. Real-time GPS compass with calibration guidance so you can pray with confidence anywhere in the world.</p>
       </div>
 
       <!-- Prayer Times -->
@@ -282,8 +326,8 @@
             <polyline points="12 6 12 12 16 14"/>
           </svg>
         </div>
-        <h3 class="font-semibold text-gray-900 text-base mb-1">Prayer Times</h3>
-        <p class="text-gray-500 text-sm leading-relaxed">Never guess again. Location-based prayer times calculated to the minute using your preferred method - Fajr, Dhuhr, Asr, Maghrib, and Isha.</p>
+        <h3 class="font-semibold text-gray-900 text-base mb-1" data-i18n="feat.prayer.h3">Prayer Times</h3>
+        <p class="text-gray-500 text-sm leading-relaxed" data-i18n="feat.prayer.p">Never guess again. Location-based prayer times calculated to the minute using your preferred method - Fajr, Dhuhr, Asr, Maghrib, and Isha.</p>
       </div>
 
       <!-- Zakaat -->
@@ -296,8 +340,8 @@
             <line x1="10" y1="14" x2="14" y2="14"/>
           </svg>
         </div>
-        <h3 class="font-semibold text-gray-900 text-base mb-1">Zakaat Calculator</h3>
-        <p class="text-gray-500 text-sm leading-relaxed">Fulfil your obligation with certainty. Calculate Zakaat across cash, gold, silver, and investments with live Nisaab values and multiple currencies.</p>
+        <h3 class="font-semibold text-gray-900 text-base mb-1" data-i18n="feat.zakaat.h3">Zakaat Calculator</h3>
+        <p class="text-gray-500 text-sm leading-relaxed" data-i18n="feat.zakaat.p">Fulfil your obligation with certainty. Calculate Zakaat across cash, gold, silver, and investments with live Nisaab values and multiple currencies.</p>
       </div>
 
       <!-- Tasbih -->
@@ -307,8 +351,8 @@
             <path d="M18.178 8c5.096 0 5.096 8 0 8-5.095 0-7.133-8-12.739-8C.343 8 .343 16 5.44 16c5.095 0 7.133-8 12.738-8z"/>
           </svg>
         </div>
-        <h3 class="font-semibold text-gray-900 text-base mb-1">Tasbih Counter</h3>
-        <p class="text-gray-500 text-sm leading-relaxed">Deepen your dhikr. A distraction-free digital counter with haptic feedback and custom target goals - so nothing breaks your focus.</p>
+        <h3 class="font-semibold text-gray-900 text-base mb-1" data-i18n="feat.tasbih.h3">Tasbih Counter</h3>
+        <p class="text-gray-500 text-sm leading-relaxed" data-i18n="feat.tasbih.p">Deepen your dhikr. A distraction-free digital counter with haptic feedback and custom target goals - so nothing breaks your focus.</p>
       </div>
 
       <!-- Islamic Calendar -->
@@ -321,8 +365,8 @@
             <line x1="3" y1="10" x2="21" y2="10"/>
           </svg>
         </div>
-        <h3 class="font-semibold text-gray-900 text-base mb-1">Islamic Calendar</h3>
-        <p class="text-gray-500 text-sm leading-relaxed">Stay connected to the Islamic year. View your Hijri date and never miss Ramadan, Eid, or other important observances with upcoming event alerts.</p>
+        <h3 class="font-semibold text-gray-900 text-base mb-1" data-i18n="feat.calendar.h3">Islamic Calendar</h3>
+        <p class="text-gray-500 text-sm leading-relaxed" data-i18n="feat.calendar.p">Stay connected to the Islamic year. View your Hijri date and never miss Ramadan, Eid, or other important observances with upcoming event alerts.</p>
       </div>
 
       <!-- Du'a Library -->
@@ -333,8 +377,8 @@
             <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
           </svg>
         </div>
-        <h3 class="font-semibold text-gray-900 text-base mb-1">Du'a Library</h3>
-        <p class="text-gray-500 text-sm leading-relaxed">The right words, every time. Authentic duas for daily situations - with Arabic text, transliteration, and translation - available offline.</p>
+        <h3 class="font-semibold text-gray-900 text-base mb-1" data-i18n="feat.dua.h3">Du'a Library</h3>
+        <p class="text-gray-500 text-sm leading-relaxed" data-i18n="feat.dua.p">The right words, every time. Authentic duas for daily situations - with Arabic text, transliteration, and translation - available offline.</p>
       </div>
 
     </div>
@@ -343,35 +387,35 @@
   <!-- ───────────── MORE TOOLS STRIP ───────────── -->
   <section class="bg-gray-50 border-y border-gray-100 py-12">
     <div class="max-w-5xl mx-auto px-5 text-center">
-      <p class="text-sm font-semibold uppercase tracking-widest text-emerald-600 mb-4">Also included</p>
+      <p class="text-sm font-semibold uppercase tracking-widest text-emerald-600 mb-4" data-i18n="more.eyebrow">Also included</p>
       <div class="flex flex-wrap justify-center gap-3">
         <span class="inline-flex items-center gap-2 bg-white border border-gray-200 text-gray-700 text-sm px-4 py-2 rounded-full shadow-sm">
           <svg class="w-4 h-4 stroke-emerald-600 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-          Asma ul Husna
+          <span data-i18n="more.asma">Asma ul Husna</span>
         </span>
         <span class="inline-flex items-center gap-2 bg-white border border-gray-200 text-gray-700 text-sm px-4 py-2 rounded-full shadow-sm">
           <svg class="w-4 h-4 stroke-emerald-600 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
-          Hajj &amp; Umrah Guide
+          <span data-i18n="more.hajj">Hajj &amp; Umrah Guide</span>
         </span>
         <span class="inline-flex items-center gap-2 bg-white border border-gray-200 text-gray-700 text-sm px-4 py-2 rounded-full shadow-sm">
           <svg class="w-4 h-4 stroke-emerald-600 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-          Dark Mode
+          <span data-i18n="more.dark">Dark Mode</span>
         </span>
         <span class="inline-flex items-center gap-2 bg-white border border-gray-200 text-gray-700 text-sm px-4 py-2 rounded-full shadow-sm">
           <svg class="w-4 h-4 stroke-emerald-600 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
-          Zero Ads
+          <span data-i18n="more.zeroads">Zero Ads</span>
         </span>
         <span class="inline-flex items-center gap-2 bg-white border border-gray-200 text-gray-700 text-sm px-4 py-2 rounded-full shadow-sm">
           <svg class="w-4 h-4 stroke-emerald-600 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="1" y1="1" x2="23" y2="23"/><path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"/><path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"/><path d="M10.71 5.05A16 16 0 0 1 22.56 9"/><path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
-          Works Offline
+          <span data-i18n="more.offline">Works Offline</span>
         </span>
         <span class="inline-flex items-center gap-2 bg-white border border-gray-200 text-gray-700 text-sm px-4 py-2 rounded-full shadow-sm">
           <svg class="w-4 h-4 stroke-emerald-600 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          No Account Needed
+          <span data-i18n="more.noaccount">No Account Needed</span>
         </span>
         <span class="inline-flex items-center gap-2 bg-white border border-gray-200 text-gray-700 text-sm px-4 py-2 rounded-full shadow-sm">
           <svg class="w-4 h-4 stroke-emerald-600 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
-          Free to Download
+          <span data-i18n="more.free">Free to Download</span>
         </span>
       </div>
     </div>
@@ -379,8 +423,8 @@
 
   <!-- ───────────── WHY NURTOOLS ───────────── -->
   <section class="max-w-5xl mx-auto px-5 py-20">
-    <p class="text-sm font-semibold uppercase tracking-widest text-emerald-600 text-center mb-2">Why Nurtools?</p>
-    <h2 class="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-12">Built different, for Muslims who care</h2>
+    <p class="text-sm font-semibold uppercase tracking-widest text-emerald-600 text-center mb-2" data-i18n="why.eyebrow">Why Nurtools?</p>
+    <h2 class="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-12" data-i18n="why.h2">Built different, for Muslims who care</h2>
 
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
       <div class="flex flex-col items-center gap-3">
@@ -389,8 +433,8 @@
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
           </svg>
         </div>
-        <h3 class="font-semibold text-gray-900">Privacy First</h3>
-        <p class="text-gray-500 text-sm leading-relaxed">No account. No tracking. Your location is used on-device only - never sent to a server.</p>
+        <h3 class="font-semibold text-gray-900" data-i18n="why.privacy.h3">Privacy First</h3>
+        <p class="text-gray-500 text-sm leading-relaxed" data-i18n="why.privacy.p">No account. No tracking. Your location is used on-device only - never sent to a server.</p>
       </div>
       <div class="flex flex-col items-center gap-3">
         <div class="w-12 h-12 rounded-2xl bg-emerald-50 flex items-center justify-center">
@@ -398,8 +442,8 @@
             <polyline points="20 6 9 17 4 12"/>
           </svg>
         </div>
-        <h3 class="font-semibold text-gray-900">Accuracy You Can Trust</h3>
-        <p class="text-gray-500 text-sm leading-relaxed">Prayer times and Qibla direction calculated with established Islamic algorithms, not approximations.</p>
+        <h3 class="font-semibold text-gray-900" data-i18n="why.accuracy.h3">Accuracy You Can Trust</h3>
+        <p class="text-gray-500 text-sm leading-relaxed" data-i18n="why.accuracy.p">Prayer times and Qibla direction calculated with established Islamic algorithms, not approximations.</p>
       </div>
       <div class="flex flex-col items-center gap-3">
         <div class="w-12 h-12 rounded-2xl bg-emerald-50 flex items-center justify-center">
@@ -409,8 +453,8 @@
             <line x1="12" y1="16" x2="12.01" y2="16"/>
           </svg>
         </div>
-        <h3 class="font-semibold text-gray-900">No Distractions</h3>
-        <p class="text-gray-500 text-sm leading-relaxed">No ads, no push notifications selling you things, no social feeds. Just the tools you need for ibadah.</p>
+        <h3 class="font-semibold text-gray-900" data-i18n="why.nodistract.h3">No Distractions</h3>
+        <p class="text-gray-500 text-sm leading-relaxed" data-i18n="why.nodistract.p">No ads, no push notifications selling you things, no social feeds. Just the tools you need for ibadah.</p>
       </div>
     </div>
   </section>
@@ -418,8 +462,8 @@
   <!-- ───────────── TESTIMONIALS ───────────── -->
   <section class="bg-emerald-50 border-y border-emerald-100 py-16 px-5">
     <div class="max-w-5xl mx-auto">
-      <p class="text-sm font-semibold uppercase tracking-widest text-emerald-600 text-center mb-2">What users say</p>
-      <h2 class="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-10">Muslims love Nurtools</h2>
+      <p class="text-sm font-semibold uppercase tracking-widest text-emerald-600 text-center mb-2" data-i18n="test.eyebrow">What users say</p>
+      <h2 class="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-10" data-i18n="test.h2">Muslims love Nurtools</h2>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
 
@@ -427,11 +471,11 @@
           <div class="flex gap-0.5 mb-3" aria-label="5 stars">
             <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
           </div>
-          <p class="text-gray-700 text-sm leading-relaxed mb-4">"Finally an Islamic app that does everything I need without bombarding me with ads. The Qibla compass is spot-on and the UI is clean. JazakAllahu Khayran!"</p>
+          <p class="text-gray-700 text-sm leading-relaxed mb-4" data-i18n="test.1.text">"Finally an Islamic app that does everything I need without bombarding me with ads. The Qibla compass is spot-on and the UI is clean. JazakAllahu Khayran!"</p>
           <div class="flex items-center gap-2">
             <div class="w-7 h-7 rounded-full bg-emerald-600 flex items-center justify-center text-white text-xs font-bold">K</div>
             <div>
-              <p class="text-xs font-semibold text-gray-800">Khalid N.</p>
+              <p class="text-xs font-semibold text-gray-800" data-i18n="test.1.name">Khalid N.</p>
               <p class="text-xs text-gray-400">Google Play</p>
             </div>
           </div>
@@ -441,11 +485,11 @@
           <div class="flex gap-0.5 mb-3" aria-label="5 stars">
             <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
           </div>
-          <p class="text-gray-700 text-sm leading-relaxed mb-4">"The Zakaat calculator saved me so much time this year. It handled all my asset types perfectly and showed me the current Nisaab automatically. Love it!"</p>
+          <p class="text-gray-700 text-sm leading-relaxed mb-4" data-i18n="test.2.text">"The Zakaat calculator saved me so much time this year. It handled all my asset types perfectly and showed me the current Nisaab automatically. Love it!"</p>
           <div class="flex items-center gap-2">
             <div class="w-7 h-7 rounded-full bg-emerald-600 flex items-center justify-center text-white text-xs font-bold">J</div>
             <div>
-              <p class="text-xs font-semibold text-gray-800">Javed N.</p>
+              <p class="text-xs font-semibold text-gray-800" data-i18n="test.2.name">Javed N.</p>
               <p class="text-xs text-gray-400">Google Play</p>
             </div>
           </div>
@@ -455,11 +499,11 @@
           <div class="flex gap-0.5 mb-3" aria-label="5 stars">
             <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
           </div>
-          <p class="text-gray-700 text-sm leading-relaxed mb-4">"I travel constantly and this app works offline, which is a game-changer. Prayer times and Qibla wherever I am, no internet needed. Highly recommend!"</p>
+          <p class="text-gray-700 text-sm leading-relaxed mb-4" data-i18n="test.3.text">"I travel constantly and this app works offline, which is a game-changer. Prayer times and Qibla wherever I am, no internet needed. Highly recommend!"</p>
           <div class="flex items-center gap-2">
             <div class="w-7 h-7 rounded-full bg-emerald-600 flex items-center justify-center text-white text-xs font-bold">N</div>
             <div>
-              <p class="text-xs font-semibold text-gray-800">Nadim F.</p>
+              <p class="text-xs font-semibold text-gray-800" data-i18n="test.3.name">Nadim F.</p>
               <p class="text-xs text-gray-400">Google Play</p>
             </div>
           </div>
@@ -471,57 +515,57 @@
 
   <!-- ───────────── FAQ ───────────── -->
   <section class="max-w-2xl mx-auto px-5 py-20">
-    <p class="text-sm font-semibold uppercase tracking-widest text-emerald-600 text-center mb-2">Questions</p>
-    <h2 class="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-10">Frequently asked</h2>
+    <p class="text-sm font-semibold uppercase tracking-widest text-emerald-600 text-center mb-2" data-i18n="faq.eyebrow">Questions</p>
+    <h2 class="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-10" data-i18n="faq.h2">Frequently asked</h2>
 
     <div class="divide-y divide-gray-100 border border-gray-100 rounded-2xl overflow-hidden shadow-sm">
 
       <details class="group bg-white">
         <summary class="flex items-center justify-between gap-4 px-6 py-4 text-sm font-semibold text-gray-800 hover:bg-gray-50 transition-colors">
-          Is Nurtools really free?
+          <span data-i18n="faq.1.q">Is Nurtools really free?</span>
           <svg class="faq-chevron w-4 h-4 text-gray-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
         </summary>
-        <p class="px-6 pb-5 text-sm text-gray-500 leading-relaxed">Yes - 100% free to download and use. There are no in-app purchases, no subscription, and no ads. Ever. Developer support is always welcomed and appreciated.</p>
+        <p class="px-6 pb-5 text-sm text-gray-500 leading-relaxed" data-i18n="faq.1.a">Yes - 100% free to download and use. There are no in-app purchases, no subscription, and no ads. Ever. Developer support is always welcomed and appreciated.</p>
       </details>
 
       <details class="group bg-white">
         <summary class="flex items-center justify-between gap-4 px-6 py-4 text-sm font-semibold text-gray-800 hover:bg-gray-50 transition-colors">
-          Does it work without an internet connection?
+          <span data-i18n="faq.2.q">Does it work without an internet connection?</span>
           <svg class="faq-chevron w-4 h-4 text-gray-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
         </summary>
-        <p class="px-6 pb-5 text-sm text-gray-500 leading-relaxed">Yes. Most features - including prayer times, Qibla compass, Tasbih, Du'a library, and Asma ul Husna - work fully offline. Only live Nisaab values for Zakaat require an internet connection.</p>
+        <p class="px-6 pb-5 text-sm text-gray-500 leading-relaxed" data-i18n="faq.2.a">Yes. Most features - including prayer times, Qibla compass, Tasbih, Du'a library, and Asma ul Husna - work fully offline. Only live Nisaab values for Zakaat require an internet connection.</p>
       </details>
 
       <details class="group bg-white">
         <summary class="flex items-center justify-between gap-4 px-6 py-4 text-sm font-semibold text-gray-800 hover:bg-gray-50 transition-colors">
-          How accurate is the Qibla compass?
+          <span data-i18n="faq.3.q">How accurate is the Qibla compass?</span>
           <svg class="faq-chevron w-4 h-4 text-gray-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
         </summary>
-        <p class="px-6 pb-5 text-sm text-gray-500 leading-relaxed">The compass uses your device's magnetometer and GPS location to calculate the great-circle bearing to the Kaabah. A calibration prompt guides you to correct any magnetic interference before you rely on it.</p>
+        <p class="px-6 pb-5 text-sm text-gray-500 leading-relaxed" data-i18n="faq.3.a">The compass uses your device's magnetometer and GPS location to calculate the great-circle bearing to the Kaabah. A calibration prompt guides you to correct any magnetic interference before you rely on it.</p>
       </details>
 
       <details class="group bg-white">
         <summary class="flex items-center justify-between gap-4 px-6 py-4 text-sm font-semibold text-gray-800 hover:bg-gray-50 transition-colors">
-          Which prayer time calculation methods are supported?
+          <span data-i18n="faq.4.q">Which prayer time calculation methods are supported?</span>
           <svg class="faq-chevron w-4 h-4 text-gray-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
         </summary>
-        <p class="px-6 pb-5 text-sm text-gray-500 leading-relaxed">Nurtools supports multiple major calculation methods including Muslim World League, Egyptian General Authority, ISNA, Umm al-Qura, and more - so you can match the convention used in your country or mosque.</p>
+        <p class="px-6 pb-5 text-sm text-gray-500 leading-relaxed" data-i18n="faq.4.a">Nurtools supports multiple major calculation methods including Muslim World League, Egyptian General Authority, ISNA, Umm al-Qura, and more - so you can match the convention used in your country or mosque.</p>
       </details>
 
       <details class="group bg-white">
         <summary class="flex items-center justify-between gap-4 px-6 py-4 text-sm font-semibold text-gray-800 hover:bg-gray-50 transition-colors">
-          Does it collect my personal data?
+          <span data-i18n="faq.5.q">Does it collect my personal data?</span>
           <svg class="faq-chevron w-4 h-4 text-gray-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
         </summary>
-        <p class="px-6 pb-5 text-sm text-gray-500 leading-relaxed">No. Nurtools does not require an account, does not store your location on any server, and does not share your data with third parties. Location access is used on-device only to calculate prayer times and Qibla direction.</p>
+        <p class="px-6 pb-5 text-sm text-gray-500 leading-relaxed" data-i18n="faq.5.a">No. Nurtools does not require an account, does not store your location on any server, and does not share your data with third parties. Location access is used on-device only to calculate prayer times and Qibla direction.</p>
       </details>
 
       <details class="group bg-white">
         <summary class="flex items-center justify-between gap-4 px-6 py-4 text-sm font-semibold text-gray-800 hover:bg-gray-50 transition-colors">
-          Is Nurtools available on iOS?
+          <span data-i18n="faq.6.q">Is Nurtools available on iOS?</span>
           <svg class="faq-chevron w-4 h-4 text-gray-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
         </summary>
-        <p class="px-6 pb-5 text-sm text-gray-500 leading-relaxed">Currently Nurtools is available on Android via Google Play. An iOS version is on the roadmap - follow us for updates or send us a message to express your interest.</p>
+        <p class="px-6 pb-5 text-sm text-gray-500 leading-relaxed" data-i18n="faq.6.a">Currently Nurtools is available on Android via Google Play. An iOS version is on the roadmap - follow us for updates or send us a message to express your interest.</p>
       </details>
 
     </div>
@@ -530,8 +574,8 @@
   <!-- ───────────── CTA ───────────── -->
   <section class="hero-gradient text-white py-20 px-5">
     <div class="max-w-xl mx-auto text-center flex flex-col items-center gap-5">
-      <h2 class="text-3xl md:text-4xl font-extrabold leading-tight">Start your journey today</h2>
-      <p class="text-emerald-100 text-lg max-w-sm">Join Muslims around the world who rely on Nurtools for their daily ibadah. Free, always.</p>
+      <h2 class="text-3xl md:text-4xl font-extrabold leading-tight" data-i18n="cta.h2">Start your journey today</h2>
+      <p class="text-emerald-100 text-lg max-w-sm" data-i18n="cta.p">Join Muslims around the world who rely on Nurtools for their daily ibadah. Free, always.</p>
       <a
         href="https://play.google.com/store/apps/details?id=com.amanoullahnazir.nurtools"
         target="_blank"
@@ -541,9 +585,9 @@
         <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.49 1.49 0 0 0-.227.819v20.51c0 .33.094.638.257.9l11.05-11.064L1.337.924zm10.992 11.164L3.095 23.095c.254.073.527.073.78-.008l13.05-7.4-4.596-4.599zM3.875.125L16.91 7.555l-4.57 4.549L3.875.125z"/>
         </svg>
-        Download Free on Google Play
+        <span data-i18n="cta.btn">Download Free on Google Play</span>
       </a>
-      <p class="text-emerald-200/70 text-xs">No ads · No sign-up · Works offline · Free forever</p>
+      <p class="text-emerald-200/70 text-xs" data-i18n="cta.note">No ads · No sign-up · Works offline · Free forever</p>
     </div>
   </section>
 
@@ -555,11 +599,11 @@
         <span class="font-semibold text-gray-600">Nurtools</span>
       </div>
       <div class="flex flex-wrap justify-center gap-4">
-        <a href="https://play.google.com/store/apps/details?id=com.amanoullahnazir.nurtools" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-600 transition-colors">Google Play</a>
-        <a href="#features" class="hover:text-emerald-600 transition-colors">Features</a>
-        <a href="mailto:amanoullah@gmail.com" class="hover:text-emerald-600 transition-colors">Contact</a>
+        <a href="https://play.google.com/store/apps/details?id=com.amanoullahnazir.nurtools" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-600 transition-colors" data-i18n="footer.play">Google Play</a>
+        <a href="#features" class="hover:text-emerald-600 transition-colors" data-i18n="footer.features">Features</a>
+        <a href="mailto:amanoullah@gmail.com" class="hover:text-emerald-600 transition-colors" data-i18n="footer.contact">Contact</a>
       </div>
-      <p>&copy; <span id="year"></span> Nurtools. All rights reserved.</p>
+      <p>&copy; <span id="year"></span> <span data-i18n="footer.copyright">Nurtools. All rights reserved.</span></p>
     </div>
   </footer>
 
@@ -597,6 +641,648 @@
       btn.addEventListener('click', function () {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
+    })();
+
+    // ─── i18n ────────────────────────────────────────────────────────────────────
+    var TRANSLATIONS = {
+      en: {
+        'nav.download': 'Free Download ↓',
+        'hero.badge': 'Free &amp; Ad-Free · Android',
+        'hero.h1': 'Never Miss a Prayer.<br class="hidden sm:block" />Always Face the Qiblah.',
+        'hero.p': "One free app that handles your Qibla compass, prayer times, Zakaat calculation, Tasbih, Du\u2019as, and Hijri calendar - beautifully, accurately, and offline.",
+        'hero.cta': 'Download Free on Google Play',
+        'hero.trust1': '✓ 100% Free',
+        'hero.trust2': '✓ No Ads',
+        'hero.trust3': '✓ No Sign-Up',
+        'hero.trust4': '✓ Works Offline',
+        'trust.tools': '8+',
+        'trust.tools.label': 'Islamic Tools',
+        'trust.rating.label': 'Play Store Rating',
+        'trust.ads': '0 Ads',
+        'trust.ads.label': 'Forever Ad-Free',
+        'trust.offline': 'Offline',
+        'trust.offline.label': 'Works Anywhere',
+        'feat.eyebrow': "What's inside",
+        'feat.h2': 'Everything a Muslim needs, daily',
+        'feat.p': 'Six precision tools built for accuracy, speed, and simplicity - no bloat, no distractions.',
+        'feat.qibla.h3': 'Qibla Compass',
+        'feat.qibla.p': 'Know exactly where to face - instantly. Real-time GPS compass with calibration guidance so you can pray with confidence anywhere in the world.',
+        'feat.prayer.h3': 'Prayer Times',
+        'feat.prayer.p': 'Never guess again. Location-based prayer times calculated to the minute using your preferred method - Fajr, Dhuhr, Asr, Maghrib, and Isha.',
+        'feat.zakaat.h3': 'Zakaat Calculator',
+        'feat.zakaat.p': "Fulfil your obligation with certainty. Calculate Zakaat across cash, gold, silver, and investments with live Nisaab values and multiple currencies.",
+        'feat.tasbih.h3': 'Tasbih Counter',
+        'feat.tasbih.p': 'Deepen your dhikr. A distraction-free digital counter with haptic feedback and custom target goals - so nothing breaks your focus.',
+        'feat.calendar.h3': 'Islamic Calendar',
+        'feat.calendar.p': 'Stay connected to the Islamic year. View your Hijri date and never miss Ramadan, Eid, or other important observances with upcoming event alerts.',
+        'feat.dua.h3': "Du\u2019a Library",
+        'feat.dua.p': 'The right words, every time. Authentic duas for daily situations - with Arabic text, transliteration, and translation - available offline.',
+        'more.eyebrow': 'Also included',
+        'more.asma': 'Asma ul Husna',
+        'more.hajj': 'Hajj &amp; Umrah Guide',
+        'more.dark': 'Dark Mode',
+        'more.zeroads': 'Zero Ads',
+        'more.offline': 'Works Offline',
+        'more.noaccount': 'No Account Needed',
+        'more.free': 'Free to Download',
+        'why.eyebrow': 'Why Nurtools?',
+        'why.h2': 'Built different, for Muslims who care',
+        'why.privacy.h3': 'Privacy First',
+        'why.privacy.p': 'No account. No tracking. Your location is used on-device only - never sent to a server.',
+        'why.accuracy.h3': 'Accuracy You Can Trust',
+        'why.accuracy.p': 'Prayer times and Qibla direction calculated with established Islamic algorithms, not approximations.',
+        'why.nodistract.h3': 'No Distractions',
+        'why.nodistract.p': 'No ads, no push notifications selling you things, no social feeds. Just the tools you need for ibadah.',
+        'test.eyebrow': 'What users say',
+        'test.h2': 'Muslims love Nurtools',
+        'test.1.text': '\u201cFinally an Islamic app that does everything I need without bombarding me with ads. The Qibla compass is spot-on and the UI is clean. JazakAllahu Khayran!\u201d',
+        'test.1.name': 'Khalid N.',
+        'test.2.text': '\u201cThe Zakaat calculator saved me so much time this year. It handled all my asset types perfectly and showed me the current Nisaab automatically. Love it!\u201d',
+        'test.2.name': 'Javed N.',
+        'test.3.text': '\u201cI travel constantly and this app works offline, which is a game-changer. Prayer times and Qibla wherever I am, no internet needed. Highly recommend!\u201d',
+        'test.3.name': 'Nadim F.',
+        'faq.eyebrow': 'Questions',
+        'faq.h2': 'Frequently asked',
+        'faq.1.q': 'Is Nurtools really free?',
+        'faq.1.a': 'Yes - 100% free to download and use. There are no in-app purchases, no subscription, and no ads. Ever. Developer support is always welcomed and appreciated.',
+        'faq.2.q': 'Does it work without an internet connection?',
+        'faq.2.a': "Yes. Most features - including prayer times, Qibla compass, Tasbih, Du\u2019a library, and Asma ul Husna - work fully offline. Only live Nisaab values for Zakaat require an internet connection.",
+        'faq.3.q': 'How accurate is the Qibla compass?',
+        'faq.3.a': "The compass uses your device\u2019s magnetometer and GPS location to calculate the great-circle bearing to the Kaabah. A calibration prompt guides you to correct any magnetic interference before you rely on it.",
+        'faq.4.q': 'Which prayer time calculation methods are supported?',
+        'faq.4.a': 'Nurtools supports multiple major calculation methods including Muslim World League, Egyptian General Authority, ISNA, Umm al-Qura, and more - so you can match the convention used in your country or mosque.',
+        'faq.5.q': 'Does it collect my personal data?',
+        'faq.5.a': 'No. Nurtools does not require an account, does not store your location on any server, and does not share your data with third parties. Location access is used on-device only to calculate prayer times and Qibla direction.',
+        'faq.6.q': 'Is Nurtools available on iOS?',
+        'faq.6.a': 'Currently Nurtools is available on Android via Google Play. An iOS version is on the roadmap - follow us for updates or send us a message to express your interest.',
+        'cta.h2': 'Start your journey today',
+        'cta.p': 'Join Muslims around the world who rely on Nurtools for their daily ibadah. Free, always.',
+        'cta.btn': 'Download Free on Google Play',
+        'cta.note': 'No ads \u00b7 No sign-up \u00b7 Works offline \u00b7 Free forever',
+        'footer.play': 'Google Play',
+        'footer.features': 'Features',
+        'footer.contact': 'Contact',
+        'footer.copyright': 'Nurtools. All rights reserved.'
+      },
+
+      // ── Arabic ──────────────────────────────────────────────────────────────────
+      ar: {
+        'nav.download': 'تحميل مجاني ↓',
+        'hero.badge': 'مجاني وبدون إعلانات · أندرويد',
+        'hero.h1': 'لا تفوّت صلاة.<br class="hidden sm:block" />اعرف دائمًا اتجاه القبلة.',
+        'hero.p': 'تطبيق مجاني واحد يجمع بوصلة القبلة، أوقات الصلاة، حاسبة الزكاة، عداد التسبيح، مكتبة الأدعية والتقويم الهجري - بدقة وسهولة ويعمل بدون إنترنت.',
+        'hero.cta': 'تحميل مجاني من Google Play',
+        'hero.trust1': '✓ مجاني 100%',
+        'hero.trust2': '✓ بدون إعلانات',
+        'hero.trust3': '✓ بدون تسجيل',
+        'hero.trust4': '✓ يعمل بدون إنترنت',
+        'trust.tools': '8+',
+        'trust.tools.label': 'أدوات إسلامية',
+        'trust.rating.label': 'تقييم Play Store',
+        'trust.ads': '0 إعلانات',
+        'trust.ads.label': 'بدون إعلانات للأبد',
+        'trust.offline': 'أوفلاين',
+        'trust.offline.label': 'يعمل في أي مكان',
+        'feat.eyebrow': 'ما بداخله',
+        'feat.h2': 'كل ما يحتاجه المسلم، يوميًا',
+        'feat.p': 'ست أدوات دقيقة مبنية للدقة والسرعة والبساطة - بدون تعقيد أو تشتيت.',
+        'feat.qibla.h3': 'بوصلة القبلة',
+        'feat.qibla.p': 'اعرف اتجاه القبلة بدقة فورية. بوصلة GPS في الوقت الفعلي مع إرشادات المعايرة لتُصلي بثقة في أي مكان في العالم.',
+        'feat.prayer.h3': 'أوقات الصلاة',
+        'feat.prayer.p': 'لا تخمّن بعد الآن. أوقات صلاة مبنية على موقعك الجغرافي محسوبة بالدقيقة باستخدام الطريقة التي تفضلها - الفجر، الظهر، العصر، المغرب والعشاء.',
+        'feat.zakaat.h3': 'حاسبة الزكاة',
+        'feat.zakaat.p': 'أدّ فريضتك بيقين. احسب زكاتك على النقد والذهب والفضة والاستثمارات مع قيم النصاب الحية وعملات متعددة.',
+        'feat.tasbih.h3': 'عداد التسبيح',
+        'feat.tasbih.p': 'عمّق ذكرك. عداد رقمي خالٍ من المشتتات مع اهتزاز وأهداف مخصصة - حتى لا ينقطع تركيزك.',
+        'feat.calendar.h3': 'التقويم الإسلامي',
+        'feat.calendar.p': 'ابقَ متواصلًا مع السنة الإسلامية. اطّلع على تاريخك الهجري ولا تفوّت رمضان أو العيد أو المناسبات المهمة مع تنبيهات الأحداث القادمة.',
+        'feat.dua.h3': 'مكتبة الأدعية',
+        'feat.dua.p': 'الكلمات الصحيحة في كل وقت. أدعية أصيلة للمواقف اليومية - بالنص العربي والنقحرة والترجمة - متاحة بدون إنترنت.',
+        'more.eyebrow': 'يشمل أيضًا',
+        'more.asma': 'أسماء الله الحسنى',
+        'more.hajj': 'دليل الحج والعمرة',
+        'more.dark': 'الوضع المظلم',
+        'more.zeroads': 'بدون إعلانات',
+        'more.offline': 'يعمل بدون إنترنت',
+        'more.noaccount': 'لا تحتاج لحساب',
+        'more.free': 'تحميل مجاني',
+        'why.eyebrow': 'لماذا Nurtools؟',
+        'why.h2': 'مختلف، للمسلمين الذين يهتمون',
+        'why.privacy.h3': 'الخصوصية أولًا',
+        'why.privacy.p': 'لا حساب. لا تتبع. موقعك الجغرافي يُستخدم على الجهاز فقط - ولا يُرسل إلى أي خادم.',
+        'why.accuracy.h3': 'دقة تثق بها',
+        'why.accuracy.p': 'أوقات الصلاة واتجاه القبلة محسوبة بخوارزميات إسلامية راسخة، وليس تقريبات.',
+        'why.nodistract.h3': 'بدون مشتتات',
+        'why.nodistract.p': 'لا إعلانات، ولا إشعارات تحاول بيعك شيئًا، ولا تغذيات اجتماعية. فقط الأدوات التي تحتاجها للعبادة.',
+        'test.eyebrow': 'ما يقوله المستخدمون',
+        'test.h2': 'المسلمون يحبون Nurtools',
+        'test.1.text': '\u201cأخيرًا تطبيق إسلامي يفي بكل احتياجاتي دون إزعاجي بالإعلانات. بوصلة القبلة دقيقة وواجهة المستخدم نظيفة. جزاكم الله خيرًا!\u201d',
+        'test.1.name': 'Khalid N.',
+        'test.2.text': '\u201cحاسبة الزكاة وفّرت عليّ وقتًا كثيرًا هذا العام. تعاملت مع جميع أنواع أصولي وأظهرت لي قيمة النصاب الحالية تلقائيًا. أحبها!\u201d',
+        'test.2.name': 'Javed N.',
+        'test.3.text': '\u201cأسافر باستمرار وهذا التطبيق يعمل بدون إنترنت وهو أمر غيّر قواعد اللعبة. أوقات الصلاة والقبلة أينما كنت. أنصح به بشدة!\u201d',
+        'test.3.name': 'Nadim F.',
+        'faq.eyebrow': 'أسئلة',
+        'faq.h2': 'الأسئلة الشائعة',
+        'faq.1.q': 'هل Nurtools مجاني حقًا؟',
+        'faq.1.a': 'نعم - مجاني 100% للتحميل والاستخدام. لا توجد مشتريات داخل التطبيق، ولا اشتراك، ولا إعلانات. أبدًا. نرحب دائمًا بدعم المطور ونقدره.',
+        'faq.2.q': 'هل يعمل بدون اتصال بالإنترنت؟',
+        'faq.2.a': 'نعم. معظم الميزات - بما فيها أوقات الصلاة، بوصلة القبلة، التسبيح، مكتبة الأدعية وأسماء الله الحسنى - تعمل بالكامل بدون إنترنت. فقط قيم النصاب الحية للزكاة تتطلب اتصالًا بالإنترنت.',
+        'faq.3.q': 'كم هي دقة بوصلة القبلة؟',
+        'faq.3.a': 'تستخدم البوصلة مقياس المغناطيس في جهازك وموقع GPS لحساب الاتجاه إلى الكعبة المشرفة. يرشدك مطالبة المعايرة لتصحيح أي تشويش مغناطيسي قبل الاعتماد عليها.',
+        'faq.4.q': 'ما طرق حساب أوقات الصلاة المدعومة؟',
+        'faq.4.a': 'يدعم Nurtools طرقًا حسابية رئيسية متعددة بما فيها رابطة العالم الإسلامي، الهيئة المصرية العامة، ISNA، أم القرى والمزيد - حتى تتمكن من مطابقة الاتفاقية المستخدمة في بلدك أو مسجدك.',
+        'faq.5.q': 'هل يجمع بياناتي الشخصية؟',
+        'faq.5.a': 'لا. لا يتطلب Nurtools حسابًا، ولا يخزن موقعك الجغرافي على أي خادم، ولا يشارك بياناتك مع أطراف ثالثة. الوصول إلى الموقع يُستخدم على الجهاز فقط لحساب أوقات الصلاة واتجاه القبلة.',
+        'faq.6.q': 'هل Nurtools متاح على iOS؟',
+        'faq.6.a': 'حاليًا Nurtools متاح على أندرويد عبر Google Play. إصدار iOS في خارطة الطريق - تابعنا للتحديثات أو أرسل لنا رسالة لتُعبّر عن اهتمامك.',
+        'cta.h2': 'ابدأ رحلتك اليوم',
+        'cta.p': 'انضم إلى المسلمين حول العالم الذين يعتمدون على Nurtools في عبادتهم اليومية. مجاني، دائمًا.',
+        'cta.btn': 'تحميل مجاني من Google Play',
+        'cta.note': 'بدون إعلانات · بدون تسجيل · يعمل بدون إنترنت · مجاني للأبد',
+        'footer.play': 'Google Play',
+        'footer.features': 'الميزات',
+        'footer.contact': 'تواصل معنا',
+        'footer.copyright': 'Nurtools. جميع الحقوق محفوظة.'
+      },
+
+      // ── French ──────────────────────────────────────────────────────────────────
+      fr: {
+        'nav.download': 'Télécharger gratuitement ↓',
+        'hero.badge': 'Gratuit &amp; sans publicité · Android',
+        'hero.h1': 'Ne manquez aucune prière.<br class="hidden sm:block" />Trouvez toujours la Qibla.',
+        'hero.p': "Une application gratuite qui gère votre boussole Qibla, les horaires de prière, le calcul de la Zakat, le Tasbih, les Du\u2019as et le calendrier hégirien - avec élégance, précision et sans connexion.",
+        'hero.cta': 'Télécharger gratuitement sur Google Play',
+        'hero.trust1': '✓ 100% Gratuit',
+        'hero.trust2': '✓ Sans pub',
+        'hero.trust3': '✓ Sans inscription',
+        'hero.trust4': '✓ Fonctionne hors ligne',
+        'trust.tools': '8+',
+        'trust.tools.label': 'Outils Islamiques',
+        'trust.rating.label': 'Note Play Store',
+        'trust.ads': '0 Pub',
+        'trust.ads.label': 'Sans pub pour toujours',
+        'trust.offline': 'Hors ligne',
+        'trust.offline.label': 'Fonctionne partout',
+        'feat.eyebrow': "Ce que contient l'app",
+        'feat.h2': 'Tout ce dont un musulman a besoin, au quotidien',
+        'feat.p': 'Six outils de précision conçus pour la précision, la rapidité et la simplicité - sans superflu ni distraction.',
+        'feat.qibla.h3': 'Boussole Qibla',
+        'feat.qibla.p': "Sachez exactement où faire face - instantanément. Boussole GPS en temps réel avec guide de calibration pour prier avec confiance n'importe où dans le monde.",
+        'feat.prayer.h3': 'Horaires de Prière',
+        'feat.prayer.p': 'Ne devinez plus jamais. Horaires de prière basés sur votre localisation, calculés à la minute près selon votre méthode préférée - Fajr, Dhuhr, Asr, Maghrib et Isha.',
+        'feat.zakaat.h3': 'Calculatrice de Zakat',
+        'feat.zakaat.p': 'Accomplissez votre obligation avec certitude. Calculez la Zakat sur les liquidités, l\'or, l\'argent et les investissements avec les valeurs de Nissab en temps réel et plusieurs devises.',
+        'feat.tasbih.h3': 'Compteur Tasbih',
+        'feat.tasbih.p': 'Approfondissez votre dhikr. Un compteur numérique sans distraction avec retour haptique et objectifs personnalisés - pour que rien ne brise votre concentration.',
+        'feat.calendar.h3': 'Calendrier Islamique',
+        'feat.calendar.p': "Restez connecté à l'année islamique. Consultez votre date Hégirienne et ne manquez jamais le Ramadan, l'Aïd ou d'autres observances importantes grâce aux alertes d'événements.",
+        'feat.dua.h3': "Bibliothèque de Du\u2019as",
+        'feat.dua.p': 'Les bons mots, à chaque fois. Des du\'as authentiques pour les situations quotidiennes - avec le texte arabe, la translittération et la traduction - disponibles hors ligne.',
+        'more.eyebrow': 'Également inclus',
+        'more.asma': 'Asma ul Husna',
+        'more.hajj': 'Guide Hajj &amp; Umrah',
+        'more.dark': 'Mode sombre',
+        'more.zeroads': 'Zéro publicité',
+        'more.offline': 'Fonctionne hors ligne',
+        'more.noaccount': 'Pas de compte requis',
+        'more.free': 'Gratuit à télécharger',
+        'why.eyebrow': 'Pourquoi Nurtools ?',
+        'why.h2': 'Conçu différemment, pour les musulmans exigeants',
+        'why.privacy.h3': 'Vie privée avant tout',
+        'why.privacy.p': "Pas de compte. Pas de suivi. Votre localisation est utilisée uniquement sur l'appareil - jamais envoyée à un serveur.",
+        'why.accuracy.h3': 'Une précision fiable',
+        'why.accuracy.p': 'Les horaires de prière et la direction de la Qibla sont calculés avec des algorithmes islamiques établis, pas des approximations.',
+        'why.nodistract.h3': 'Sans distraction',
+        'why.nodistract.p': "Pas de pub, pas de notifications qui vous vendent des choses, pas de flux sociaux. Seulement les outils dont vous avez besoin pour l'ibadah.",
+        'test.eyebrow': 'Ce que disent les utilisateurs',
+        'test.h2': 'Les musulmans adorent Nurtools',
+        'test.1.text': "\u201cEnfin une application islamique qui fait tout ce dont j'ai besoin sans me bombarder de publicités. La boussole Qibla est précise et l'interface est épurée. JazakAllahu Khayran !\u201d",
+        'test.1.name': 'Khalid N.',
+        'test.2.text': "\u201cLa calculatrice de Zakat m'a fait gagner tellement de temps cette année. Elle a géré tous mes types d'actifs parfaitement et m'a montré le Nissab actuel automatiquement. Je l'adore !\u201d",
+        'test.2.name': 'Javed N.',
+        'test.3.text': "\u201cJe voyage constamment et cette appli fonctionne hors ligne, ce qui change tout. Horaires de prière et Qibla où que je sois, sans internet. Je la recommande vivement !\u201d",
+        'test.3.name': 'Nadim F.',
+        'faq.eyebrow': 'Questions',
+        'faq.h2': 'Questions fréquentes',
+        'faq.1.q': 'Nurtools est-il vraiment gratuit ?',
+        'faq.1.a': "Oui - 100% gratuit à télécharger et utiliser. Il n'y a pas d'achats intégrés, pas d'abonnement, et pas de publicités. Jamais. Le soutien au développeur est toujours bienvenu et apprécié.",
+        'faq.2.q': 'Fonctionne-t-il sans connexion internet ?',
+        'faq.2.a': "Oui. La plupart des fonctionnalités - y compris les horaires de prière, la boussole Qibla, le Tasbih, la bibliothèque de Du\u2019as et Asma ul Husna - fonctionnent entièrement hors ligne. Seules les valeurs de Nissab en direct pour la Zakat nécessitent une connexion internet.",
+        'faq.3.q': 'Quelle est la précision de la boussole Qibla ?',
+        'faq.3.a': 'La boussole utilise le magnétomètre de votre appareil et la localisation GPS pour calculer le relèvement orthodromique vers la Kaaba. Une invite de calibration vous guide pour corriger toute interférence magnétique avant de vous y fier.',
+        'faq.4.q': "Quelles méthodes de calcul des horaires de prière sont supportées ?",
+        'faq.4.a': "Nurtools supporte plusieurs méthodes de calcul principales incluant la Ligue Musulmane Mondiale, l'Autorité Générale Égyptienne, l'ISNA, Umm al-Qura, et plus encore - pour correspondre à la convention utilisée dans votre pays ou votre mosquée.",
+        'faq.5.q': 'Collecte-t-il mes données personnelles ?',
+        'faq.5.a': "Non. Nurtools ne nécessite pas de compte, ne stocke pas votre localisation sur un serveur, et ne partage pas vos données avec des tiers. L'accès à la localisation est utilisé uniquement sur l'appareil pour calculer les horaires de prière et la direction de la Qibla.",
+        'faq.6.q': 'Nurtools est-il disponible sur iOS ?',
+        'faq.6.a': "Actuellement Nurtools est disponible sur Android via Google Play. Une version iOS est dans la feuille de route - suivez-nous pour les mises à jour ou envoyez-nous un message pour exprimer votre intérêt.",
+        'cta.h2': "Commencez votre voyage aujourd'hui",
+        'cta.p': "Rejoignez les musulmans du monde entier qui s'appuient sur Nurtools pour leur ibadah quotidien. Gratuit, toujours.",
+        'cta.btn': 'Télécharger gratuitement sur Google Play',
+        'cta.note': 'Sans pub · Sans inscription · Fonctionne hors ligne · Gratuit pour toujours',
+        'footer.play': 'Google Play',
+        'footer.features': 'Fonctionnalités',
+        'footer.contact': 'Contact',
+        'footer.copyright': 'Nurtools. Tous droits réservés.'
+      },
+
+      // ── Indonesian ──────────────────────────────────────────────────────────────
+      id: {
+        'nav.download': 'Unduh Gratis ↓',
+        'hero.badge': 'Gratis &amp; Tanpa Iklan · Android',
+        'hero.h1': 'Jangan Lewatkan Shalat.<br class="hidden sm:block" />Selalu Hadap Kiblat.',
+        'hero.p': 'Satu aplikasi gratis yang mengatur kompas kiblat, waktu shalat, kalkulator zakat, tasbih, kumpulan doa, dan kalender Hijriyah - dengan indah, akurat, dan tanpa internet.',
+        'hero.cta': 'Unduh Gratis di Google Play',
+        'hero.trust1': '✓ 100% Gratis',
+        'hero.trust2': '✓ Tanpa Iklan',
+        'hero.trust3': '✓ Tanpa Daftar',
+        'hero.trust4': '✓ Bisa Offline',
+        'trust.tools': '8+',
+        'trust.tools.label': 'Alat Islami',
+        'trust.rating.label': 'Rating Play Store',
+        'trust.ads': '0 Iklan',
+        'trust.ads.label': 'Bebas Iklan Selamanya',
+        'trust.offline': 'Offline',
+        'trust.offline.label': 'Bisa Di Mana Saja',
+        'feat.eyebrow': 'Apa yang ada di dalamnya',
+        'feat.h2': 'Semua yang dibutuhkan Muslim, setiap hari',
+        'feat.p': 'Enam alat presisi yang dibuat untuk akurasi, kecepatan, dan kesederhanaan - tanpa basa-basi, tanpa gangguan.',
+        'feat.qibla.h3': 'Kompas Kiblat',
+        'feat.qibla.p': 'Ketahui tepat ke mana harus menghadap - seketika. Kompas GPS real-time dengan panduan kalibrasi agar Anda bisa shalat dengan yakin di mana saja di dunia.',
+        'feat.prayer.h3': 'Waktu Shalat',
+        'feat.prayer.p': 'Tidak perlu menebak lagi. Waktu shalat berbasis lokasi dihitung per menit menggunakan metode pilihan Anda - Subuh, Zuhur, Ashar, Maghrib, dan Isya.',
+        'feat.zakaat.h3': 'Kalkulator Zakat',
+        'feat.zakaat.p': 'Penuhi kewajiban Anda dengan pasti. Hitung zakat atas uang tunai, emas, perak, dan investasi dengan nilai nisab terkini dan berbagai mata uang.',
+        'feat.tasbih.h3': 'Penghitung Tasbih',
+        'feat.tasbih.p': 'Perdalam dzikir Anda. Penghitung digital bebas gangguan dengan umpan balik haptic dan target kustom - agar tidak ada yang memutus fokus Anda.',
+        'feat.calendar.h3': 'Kalender Islam',
+        'feat.calendar.p': 'Tetap terhubung dengan tahun Islam. Lihat tanggal Hijriyah Anda dan jangan lewatkan Ramadan, Idul Fitri, atau peringatan penting lainnya dengan pengingat acara mendatang.',
+        'feat.dua.h3': 'Pustaka Doa',
+        'feat.dua.p': 'Kata-kata yang tepat, setiap saat. Doa-doa otentik untuk situasi sehari-hari - dengan teks Arab, transliterasi, dan terjemahan - tersedia offline.',
+        'more.eyebrow': 'Juga tersedia',
+        'more.asma': 'Asma ul Husna',
+        'more.hajj': 'Panduan Haji &amp; Umrah',
+        'more.dark': 'Mode Gelap',
+        'more.zeroads': 'Nol Iklan',
+        'more.offline': 'Bisa Offline',
+        'more.noaccount': 'Tanpa Akun',
+        'more.free': 'Gratis Diunduh',
+        'why.eyebrow': 'Mengapa Nurtools?',
+        'why.h2': 'Dibangun berbeda, untuk Muslim yang peduli',
+        'why.privacy.h3': 'Privasi Utama',
+        'why.privacy.p': 'Tanpa akun. Tanpa pelacakan. Lokasi Anda hanya digunakan di perangkat - tidak pernah dikirim ke server.',
+        'why.accuracy.h3': 'Akurasi yang Bisa Dipercaya',
+        'why.accuracy.p': 'Waktu shalat dan arah kiblat dihitung dengan algoritma Islam yang telah mapan, bukan perkiraan.',
+        'why.nodistract.h3': 'Tanpa Gangguan',
+        'why.nodistract.p': 'Tanpa iklan, tanpa notifikasi yang menjual sesuatu, tanpa feed sosial. Hanya alat yang Anda butuhkan untuk ibadah.',
+        'test.eyebrow': 'Kata pengguna',
+        'test.h2': 'Muslim menyukai Nurtools',
+        'test.1.text': '\u201cAkhirnya aplikasi Islam yang melakukan semua yang saya butuhkan tanpa membombardir saya dengan iklan. Kompas kiblat sangat tepat dan UI-nya bersih. JazakAllahu Khayran!\u201d',
+        'test.1.name': 'Khalid N.',
+        'test.2.text': '\u201cKalkulator zakat menghemat banyak waktu saya tahun ini. Menangani semua jenis aset saya dengan sempurna dan menampilkan nilai nisab saat ini secara otomatis. Sangat suka!\u201d',
+        'test.2.name': 'Javed N.',
+        'test.3.text': '\u201cSaya sering bepergian dan aplikasi ini bisa offline, yang benar-benar mengubah segalanya. Waktu shalat dan kiblat di mana pun saya berada, tanpa internet. Sangat direkomendasikan!\u201d',
+        'test.3.name': 'Nadim F.',
+        'faq.eyebrow': 'Pertanyaan',
+        'faq.h2': 'Yang sering ditanyakan',
+        'faq.1.q': 'Apakah Nurtools benar-benar gratis?',
+        'faq.1.a': 'Ya - 100% gratis untuk diunduh dan digunakan. Tidak ada pembelian dalam aplikasi, tidak ada langganan, dan tidak ada iklan. Selamanya. Dukungan untuk pengembang selalu disambut dan diapresiasi.',
+        'faq.2.q': 'Apakah bisa digunakan tanpa koneksi internet?',
+        'faq.2.a': 'Ya. Sebagian besar fitur - termasuk waktu shalat, kompas kiblat, tasbih, pustaka doa, dan Asma ul Husna - berfungsi penuh secara offline. Hanya nilai nisab langsung untuk zakat yang memerlukan koneksi internet.',
+        'faq.3.q': 'Seberapa akurat kompas kiblat?',
+        'faq.3.a': "Kompas menggunakan magnetometer perangkat Anda dan lokasi GPS untuk menghitung arah lingkaran besar ke Ka'bah. Panduan kalibrasi memandu Anda untuk mengoreksi interferensi magnetik sebelum mengandalkannya.",
+        'faq.4.q': 'Metode perhitungan waktu shalat apa yang didukung?',
+        'faq.4.a': 'Nurtools mendukung beberapa metode perhitungan utama termasuk Muslim World League, Egyptian General Authority, ISNA, Umm al-Qura, dan lainnya - sehingga Anda bisa menyesuaikan konvensi yang digunakan di negara atau masjid Anda.',
+        'faq.5.q': 'Apakah mengumpulkan data pribadi saya?',
+        'faq.5.a': 'Tidak. Nurtools tidak memerlukan akun, tidak menyimpan lokasi Anda di server mana pun, dan tidak membagikan data Anda kepada pihak ketiga. Akses lokasi hanya digunakan di perangkat untuk menghitung waktu shalat dan arah kiblat.',
+        'faq.6.q': 'Apakah Nurtools tersedia di iOS?',
+        'faq.6.a': 'Saat ini Nurtools tersedia di Android melalui Google Play. Versi iOS ada dalam roadmap - ikuti kami untuk pembaruan atau kirim pesan untuk menyatakan minat Anda.',
+        'cta.h2': 'Mulai perjalanan Anda hari ini',
+        'cta.p': 'Bergabunglah dengan Muslim di seluruh dunia yang mengandalkan Nurtools untuk ibadah harian mereka. Gratis, selamanya.',
+        'cta.btn': 'Unduh Gratis di Google Play',
+        'cta.note': 'Tanpa iklan · Tanpa daftar · Bisa offline · Gratis selamanya',
+        'footer.play': 'Google Play',
+        'footer.features': 'Fitur',
+        'footer.contact': 'Kontak',
+        'footer.copyright': 'Nurtools. Hak cipta dilindungi.'
+      },
+
+      // ── Urdu ────────────────────────────────────────────────────────────────────
+      ur: {
+        'nav.download': 'مفت ڈاؤنلوڈ ↓',
+        'hero.badge': 'مفت اور بغیر اشتہار · اینڈرائیڈ',
+        'hero.h1': 'کوئی نماز نہ چھوٹے۔<br class="hidden sm:block" />ہمیشہ قبلہ رُخ رہیں۔',
+        'hero.p': 'ایک مفت ایپ جو آپ کا قبلہ کمپاس، نماز کے اوقات، زکوٰۃ کیلکولیٹر، تسبیح کاؤنٹر، دعاؤں کی لائبریری اور اسلامی کیلنڈر سنبھالتی ہے - خوبصورتی سے، درست طریقے سے، اور آف لائن۔',
+        'hero.cta': 'Google Play پر مفت ڈاؤنلوڈ کریں',
+        'hero.trust1': '✓ 100% مفت',
+        'hero.trust2': '✓ بغیر اشتہار',
+        'hero.trust3': '✓ بغیر سائن اپ',
+        'hero.trust4': '✓ آف لائن کام کرتی ہے',
+        'trust.tools': '8+',
+        'trust.tools.label': 'اسلامی ٹولز',
+        'trust.rating.label': 'Play Store ریٹنگ',
+        'trust.ads': '0 اشتہار',
+        'trust.ads.label': 'ہمیشہ کے لیے بغیر اشتہار',
+        'trust.offline': 'آف لائن',
+        'trust.offline.label': 'ہر جگہ کام کرتی ہے',
+        'feat.eyebrow': 'کیا ہے اندر',
+        'feat.h2': 'ہر وہ چیز جو ایک مسلمان کو روزانہ چاہیے',
+        'feat.p': 'چھ درست ٹولز جو درستگی، رفتار اور سادگی کے لیے بنائے گئے ہیں - بغیر کسی فضول یا خلفشار کے۔',
+        'feat.qibla.h3': 'قبلہ کمپاس',
+        'feat.qibla.p': 'ٹھیک جانیں کدھر رُخ کرنا ہے - فوری طور پر۔ ریئل ٹائم GPS کمپاس کیلیبریشن گائیڈنس کے ساتھ تاکہ آپ دنیا میں کہیں بھی اطمینان سے نماز پڑھ سکیں۔',
+        'feat.prayer.h3': 'نماز کے اوقات',
+        'feat.prayer.p': 'اب اندازہ نہ لگائیں۔ آپ کے مقام کے مطابق نماز کے اوقات منٹ تک حساب کیے گئے ہیں - فجر، ظہر، عصر، مغرب اور عشاء۔',
+        'feat.zakaat.h3': 'زکوٰۃ کیلکولیٹر',
+        'feat.zakaat.p': 'یقین کے ساتھ اپنا فریضہ ادا کریں۔ نقد، سونے، چاندی اور سرمایہ کاری پر لائیو نصاب کی قدروں اور متعدد کرنسیوں کے ساتھ زکوٰۃ حساب کریں۔',
+        'feat.tasbih.h3': 'تسبیح کاؤنٹر',
+        'feat.tasbih.p': 'اپنا ذکر گہرا کریں۔ ہیپٹک فیڈبیک اور کسٹم اہداف کے ساتھ ایک خلفشار سے پاک ڈیجیٹل کاؤنٹر - تاکہ کچھ بھی آپ کی توجہ نہ توڑے۔',
+        'feat.calendar.h3': 'اسلامی کیلنڈر',
+        'feat.calendar.p': 'اسلامی سال سے جڑے رہیں۔ اپنی ہجری تاریخ دیکھیں اور آنے والے واقعات کی الرٹس کے ساتھ رمضان، عید یا دیگر اہم مواقع کبھی نہ چھوڑیں۔',
+        'feat.dua.h3': 'دعاؤں کی لائبریری',
+        'feat.dua.p': 'ہر وقت صحیح الفاظ۔ روزمرہ کے حالات کے لیے مستند دعائیں - عربی متن، نقل حرفی اور ترجمہ کے ساتھ - آف لائن دستیاب۔',
+        'more.eyebrow': 'یہ بھی شامل ہے',
+        'more.asma': 'اسمائے حسنیٰ',
+        'more.hajj': 'حج اور عمرہ گائیڈ',
+        'more.dark': 'ڈارک موڈ',
+        'more.zeroads': 'کوئی اشتہار نہیں',
+        'more.offline': 'آف لائن کام کرتی ہے',
+        'more.noaccount': 'اکاؤنٹ کی ضرورت نہیں',
+        'more.free': 'مفت ڈاؤنلوڈ',
+        'why.eyebrow': 'Nurtools کیوں؟',
+        'why.h2': 'مختلف بنائی گئی، ان مسلمانوں کے لیے جو فکرمند ہیں',
+        'why.privacy.h3': 'پرائیویسی پہلے',
+        'why.privacy.p': 'کوئی اکاؤنٹ نہیں۔ کوئی ٹریکنگ نہیں۔ آپ کا مقام صرف ڈیوائس پر استعمال ہوتا ہے - کبھی سرور کو نہیں بھیجا جاتا۔',
+        'why.accuracy.h3': 'قابل بھروسہ درستگی',
+        'why.accuracy.p': 'نماز کے اوقات اور قبلہ کی سمت قائم شدہ اسلامی الگورتھم کے ساتھ حساب کی جاتی ہے، تخمینوں سے نہیں۔',
+        'why.nodistract.h3': 'کوئی خلفشار نہیں',
+        'why.nodistract.p': 'کوئی اشتہار نہیں، کوئی پش نوٹیفیکیشن نہیں، کوئی سوشل فیڈ نہیں۔ صرف وہ ٹولز جو آپ کو عبادت کے لیے چاہیے۔',
+        'test.eyebrow': 'صارفین کیا کہتے ہیں',
+        'test.h2': 'مسلمان Nurtools سے محبت کرتے ہیں',
+        'test.1.text': '\u201cآخرکار ایک اسلامی ایپ جو میری ہر ضرورت پوری کرتی ہے اور مجھ پر اشتہاروں کی بوچھاڑ نہیں کرتی۔ قبلہ کمپاس بالکل درست ہے اور UI صاف ستھرا ہے۔ جزاکم اللہ خیرًا!\u201d',
+        'test.1.name': 'Khalid N.',
+        'test.2.text': '\u201cزکوٰۃ کیلکولیٹر نے اس سال میرا بہت وقت بچایا۔ اس نے میرے تمام اثاثوں کی اقسام کو کامل طریقے سے سنبھالا اور خود بخود موجودہ نصاب دکھایا۔ اسے بہت پسند کیا!\u201d',
+        'test.2.name': 'Javed N.',
+        'test.3.text': '\u201cمیں مسلسل سفر کرتا ہوں اور یہ ایپ آف لائن کام کرتی ہے، جو گیم چینجر ہے۔ نماز کے اوقات اور قبلہ جہاں بھی ہوں، بغیر انٹرنیٹ کے۔ بہت سفارش کرتا ہوں!\u201d',
+        'test.3.name': 'Nadim F.',
+        'faq.eyebrow': 'سوالات',
+        'faq.h2': 'اکثر پوچھے گئے سوالات',
+        'faq.1.q': 'کیا Nurtools واقعی مفت ہے؟',
+        'faq.1.a': 'ہاں - ڈاؤنلوڈ اور استعمال کے لیے 100% مفت۔ کوئی ان ایپ خریداری نہیں، کوئی سبسکرپشن نہیں، اور کوئی اشتہار نہیں۔ کبھی نہیں۔ ڈویلپر کی حمایت ہمیشہ خوش آمدید اور قابل قدر ہے۔',
+        'faq.2.q': 'کیا یہ انٹرنیٹ کنکشن کے بغیر کام کرتی ہے؟',
+        'faq.2.a': 'ہاں۔ زیادہ تر خصوصیات - بشمول نماز کے اوقات، قبلہ کمپاس، تسبیح، دعاؤں کی لائبریری اور اسمائے حسنیٰ - مکمل آف لائن کام کرتی ہیں۔ صرف زکوٰۃ کے لیے لائیو نصاب کی قدروں کو انٹرنیٹ کنکشن کی ضرورت ہے۔',
+        'faq.3.q': 'قبلہ کمپاس کتنا درست ہے؟',
+        'faq.3.a': 'کمپاس کعبہ مشرفہ کی طرف عظیم دائرے کی سمت حساب کرنے کے لیے آپ کے ڈیوائس کے میگنیٹومیٹر اور GPS مقام کا استعمال کرتا ہے۔ اس پر انحصار کرنے سے پہلے کسی مقناطیسی تداخل کو درست کرنے کے لیے کیلیبریشن پرامپٹ آپ کی رہنمائی کرتا ہے۔',
+        'faq.4.q': 'کون سے نماز وقت حساب کے طریقے سپورٹ کیے جاتے ہیں؟',
+        'faq.4.a': 'Nurtools متعدد بڑے حساب کے طریقوں کو سپورٹ کرتا ہے بشمول مسلم ورلڈ لیگ، مصری جنرل اتھارٹی، ISNA، ام القریٰ اور مزید - تاکہ آپ اپنے ملک یا مسجد میں استعمال ہونے والے کنونشن سے مطابقت رکھ سکیں۔',
+        'faq.5.q': 'کیا یہ میرا ذاتی ڈیٹا اکٹھا کرتی ہے؟',
+        'faq.5.a': 'نہیں۔ Nurtools کو اکاؤنٹ کی ضرورت نہیں، کسی سرور پر آپ کا مقام ذخیرہ نہیں کرتی، اور آپ کا ڈیٹا تیسرے فریق سے شیئر نہیں کرتی۔ مقام تک رسائی صرف ڈیوائس پر نماز کے اوقات اور قبلہ کی سمت حساب کرنے کے لیے استعمال ہوتی ہے۔',
+        'faq.6.q': 'کیا Nurtools iOS پر دستیاب ہے؟',
+        'faq.6.a': 'فی الحال Nurtools Google Play کے ذریعے اینڈرائیڈ پر دستیاب ہے۔ iOS ورژن روڈ میپ پر ہے - اپڈیٹس کے لیے ہمیں فالو کریں یا اپنی دلچسپی ظاہر کرنے کے لیے ہمیں پیغام بھیجیں۔',
+        'cta.h2': 'آج اپنا سفر شروع کریں',
+        'cta.p': 'دنیا بھر کے ان مسلمانوں میں شامل ہوں جو اپنی روزانہ کی عبادت کے لیے Nurtools پر بھروسہ کرتے ہیں۔ مفت، ہمیشہ۔',
+        'cta.btn': 'Google Play پر مفت ڈاؤنلوڈ کریں',
+        'cta.note': 'بغیر اشتہار · بغیر سائن اپ · آف لائن کام کرتی ہے · ہمیشہ مفت',
+        'footer.play': 'Google Play',
+        'footer.features': 'خصوصیات',
+        'footer.contact': 'رابطہ کریں',
+        'footer.copyright': 'Nurtools. تمام حقوق محفوظ ہیں۔'
+      },
+
+      // ── Turkish ─────────────────────────────────────────────────────────────────
+      tr: {
+        'nav.download': 'Ücretsiz İndir ↓',
+        'hero.badge': 'Ücretsiz &amp; Reklamsız · Android',
+        'hero.h1': 'Hiçbir Namazı Kaçırmayın.<br class="hidden sm:block" />Her Zaman Kıbleyi Bulun.',
+        'hero.p': 'Kıble pusulası, namaz vakitleri, zekat hesaplayıcı, tesbih, dua kitaplığı ve Hicri takvimi tek bir ücretsiz uygulamada yönetin - güzel, doğru ve çevrimiçi gerektirmeden.',
+        'hero.cta': "Google Play'den Ücretsiz İndir",
+        'hero.trust1': '✓ %100 Ücretsiz',
+        'hero.trust2': '✓ Reklam Yok',
+        'hero.trust3': '✓ Kayıt Yok',
+        'hero.trust4': '✓ Çevrimdışı Çalışır',
+        'trust.tools': '8+',
+        'trust.tools.label': 'İslami Araç',
+        'trust.rating.label': 'Play Store Puanı',
+        'trust.ads': '0 Reklam',
+        'trust.ads.label': 'Sonsuza Kadar Reklamsız',
+        'trust.offline': 'Çevrimdışı',
+        'trust.offline.label': 'Her Yerde Çalışır',
+        'feat.eyebrow': 'İçinde ne var',
+        'feat.h2': 'Bir Müslümanın her gün ihtiyaç duyduğu her şey',
+        'feat.p': 'Doğruluk, hız ve sadelik için tasarlanmış altı hassas araç - gereksizlik yok, dikkat dağıtıcı yok.',
+        'feat.qibla.h3': 'Kıble Pusulası',
+        'feat.qibla.p': 'Tam olarak nereye yöneleceğinizi anında öğrenin. Dünyanın her yerinde güvenle namaz kılmanız için kalibrasyon kılavuzlu gerçek zamanlı GPS pusulası.',
+        'feat.prayer.h3': 'Namaz Vakitleri',
+        'feat.prayer.p': 'Artık tahmin etmeyin. Tercih ettiğiniz yöntemi kullanarak konuma dayalı namaz vakitleri dakika dakika hesaplanır - Sabah, Öğle, İkindi, Akşam ve Yatsı.',
+        'feat.zakaat.h3': 'Zekat Hesaplayıcı',
+        'feat.zakaat.p': 'Yükümlülüğünüzü kesinlikle yerine getirin. Güncel nisap değerleri ve birden fazla para birimi ile nakit, altın, gümüş ve yatırımlardaki zekatı hesaplayın.',
+        'feat.tasbih.h3': 'Tesbih Sayacı',
+        'feat.tasbih.p': 'Zikrinizi derinleştirin. Odağınızı bozan hiçbir şey olmasın diye titreşim geri bildirimi ve özel hedefler içeren dikkat dağıtıcısız dijital sayaç.',
+        'feat.calendar.h3': 'İslam Takvimi',
+        'feat.calendar.p': 'İslam yılıyla bağlantıda kalın. Hicri tarihinizi görüntüleyin ve yaklaşan etkinlik uyarılarıyla Ramazan, Bayram veya diğer önemli günleri asla kaçırmayın.',
+        'feat.dua.h3': 'Dua Kitaplığı',
+        'feat.dua.p': 'Her zaman doğru kelimeler. Günlük durumlar için özgün dualar - Arapça metin, okunuş ve çeviri ile birlikte - çevrimiçi gerektirmeden.',
+        'more.eyebrow': 'Ayrıca dahil',
+        'more.asma': "Esmaü'l-Hüsna",
+        'more.hajj': 'Hac &amp; Umre Rehberi',
+        'more.dark': 'Karanlık Mod',
+        'more.zeroads': 'Sıfır Reklam',
+        'more.offline': 'Çevrimdışı Çalışır',
+        'more.noaccount': 'Hesap Gerekmez',
+        'more.free': 'Ücretsiz İndir',
+        'why.eyebrow': 'Neden Nurtools?',
+        'why.h2': 'Önem veren Müslümanlar için farklı tasarlandı',
+        'why.privacy.h3': 'Önce Gizlilik',
+        'why.privacy.p': 'Hesap yok. Takip yok. Konumunuz yalnızca cihazda kullanılır - hiçbir zaman sunucuya gönderilmez.',
+        'why.accuracy.h3': 'Güvenebileceğiniz Doğruluk',
+        'why.accuracy.p': 'Namaz vakitleri ve kıble yönü, yaklaşımlar değil, köklü İslami algoritmalarla hesaplanmaktadır.',
+        'why.nodistract.h3': 'Dikkat Dağıtıcı Yok',
+        'why.nodistract.p': 'Reklam yok, size bir şeyler satmaya çalışan bildirimler yok, sosyal akışlar yok. Sadece ibadet için ihtiyaç duyduğunuz araçlar.',
+        'test.eyebrow': 'Kullanıcılar ne diyor',
+        'test.h2': "Müslümanlar Nurtools'u seviyor",
+        'test.1.text': '\u201cSonunda reklamlarla bombardımana tutulmadan ihtiyacım olan her şeyi yapan bir İslami uygulama. Kıble pusulası tam isabet ve arayüz temiz. JezakAllahu Hayren!\u201d',
+        'test.1.name': 'Khalid N.',
+        'test.2.text': '\u201cZekat hesaplayıcı bu yıl bana çok zaman kazandırdı. Tüm varlık türlerimi mükemmel şekilde yönetti ve güncel nisap değerini otomatik olarak gösterdi. Bayıldım!\u201d',
+        'test.2.name': 'Javed N.',
+        'test.3.text': '\u201cSürekli seyahat ediyorum ve bu uygulama çevrimiçi gerektirmeden çalışıyor, bu oyun değiştirici. Nerede olursam olayım, internet olmadan namaz vakitleri ve kıble. Kesinlikle öneririm!\u201d',
+        'test.3.name': 'Nadim F.',
+        'faq.eyebrow': 'Sorular',
+        'faq.h2': 'Sıkça sorulan sorular',
+        'faq.1.q': 'Nurtools gerçekten ücretsiz mi?',
+        'faq.1.a': "Evet - indirip kullanmak %100 ücretsiz. Uygulama içi satın alma, abonelik ve reklam yok. Hiç. Geliştirici desteği her zaman memnuniyetle karşılanır ve takdirle değerlendirilir.",
+        'faq.2.q': 'İnternet bağlantısı olmadan çalışıyor mu?',
+        'faq.2.a': "Evet. Namaz vakitleri, kıble pusulası, tesbih, dua kitaplığı ve Esmaü'l-Hüsna dahil özelliklerin çoğu tamamen çevrimdışı çalışır. Yalnızca Zekat için canlı nisap değerleri internet bağlantısı gerektirir.",
+        'faq.3.q': 'Kıble pusulası ne kadar doğru?',
+        'faq.3.a': "Pusula, Kâbe'ye olan büyük çember yönünü hesaplamak için cihazınızın manyetometresini ve GPS konumunu kullanır. Güvenmeden önce manyetik girişimi düzeltmek için kalibrasyon istemi sizi yönlendirir.",
+        'faq.4.q': 'Hangi namaz vakti hesaplama yöntemleri destekleniyor?',
+        'faq.4.a': "Nurtools; Müslüman Dünya Birliği, Mısır Genel Otoritesi, ISNA, Ümmü'l-Kurâ ve daha fazlası dahil olmak üzere birden fazla önemli hesaplama yöntemini destekler - ülkenizde veya caminizdeki geleneği eşleştirebilmeniz için.",
+        'faq.5.q': 'Kişisel verilerimi topluyor mu?',
+        'faq.5.a': 'Hayır. Nurtools hesap gerektirmez, konumunuzu hiçbir sunucuda depolamaz ve verilerinizi üçüncü taraflarla paylaşmaz. Konum erişimi yalnızca namaz vakitlerini ve kıble yönünü hesaplamak için cihazda kullanılır.',
+        'faq.6.q': "Nurtools iOS'ta mevcut mu?",
+        'faq.6.a': "Şu anda Nurtools Google Play üzerinden Android'de mevcut. Bir iOS sürümü yol haritasında - güncellemeler için bizi takip edin veya ilginizi belirtmek için mesaj gönderin.",
+        'cta.h2': 'Yolculuğunuza bugün başlayın',
+        'cta.p': "Günlük ibadetleri için Nurtools'a güvenen dünya genelindeki Müslümanlara katılın. Ücretsiz, her zaman.",
+        'cta.btn': "Google Play'den Ücretsiz İndir",
+        'cta.note': 'Reklam yok · Kayıt yok · Çevrimdışı çalışır · Sonsuza kadar ücretsiz',
+        'footer.play': 'Google Play',
+        'footer.features': 'Özellikler',
+        'footer.contact': 'İletişim',
+        'footer.copyright': 'Nurtools. Tüm hakları saklıdır.'
+      },
+
+      // ── Malay ───────────────────────────────────────────────────────────────────
+      ms: {
+        'nav.download': 'Muat Turun Percuma ↓',
+        'hero.badge': 'Percuma &amp; Tanpa Iklan · Android',
+        'hero.h1': 'Jangan Terlepas Solat.<br class="hidden sm:block" />Sentiasa Hadap Kiblat.',
+        'hero.p': 'Satu aplikasi percuma yang menguruskan kompas kiblat, waktu solat, kalkulator zakat, tasbih, koleksi doa, dan kalendar Hijri - dengan cantik, tepat, dan boleh digunakan tanpa internet.',
+        'hero.cta': 'Muat Turun Percuma di Google Play',
+        'hero.trust1': '✓ 100% Percuma',
+        'hero.trust2': '✓ Tanpa Iklan',
+        'hero.trust3': '✓ Tanpa Daftar',
+        'hero.trust4': '✓ Boleh Tanpa Internet',
+        'trust.tools': '8+',
+        'trust.tools.label': 'Alat Islam',
+        'trust.rating.label': 'Penilaian Play Store',
+        'trust.ads': '0 Iklan',
+        'trust.ads.label': 'Bebas Iklan Selama-lamanya',
+        'trust.offline': 'Luar Talian',
+        'trust.offline.label': 'Boleh Di Mana Saja',
+        'feat.eyebrow': 'Apa yang ada di dalamnya',
+        'feat.h2': 'Semua yang diperlukan Muslim, setiap hari',
+        'feat.p': 'Enam alat tepat yang dibina untuk ketepatan, kelajuan, dan kesederhanaan - tanpa lebihan, tanpa gangguan.',
+        'feat.qibla.h3': 'Kompas Kiblat',
+        'feat.qibla.p': 'Ketahui tepat ke mana perlu menghadap - serta merta. Kompas GPS masa nyata dengan panduan penentukuran agar anda boleh solat dengan yakin di mana saja di dunia.',
+        'feat.prayer.h3': 'Waktu Solat',
+        'feat.prayer.p': 'Tidak perlu meneka lagi. Waktu solat berdasarkan lokasi dikira hingga ke minit menggunakan kaedah pilihan anda - Subuh, Zohor, Asar, Maghrib, dan Isyak.',
+        'feat.zakaat.h3': 'Kalkulator Zakat',
+        'feat.zakaat.p': "Tunaikan kewajipan anda dengan pasti. Kira zakat ke atas wang tunai, emas, perak, dan pelaburan dengan nilai nisab terkini dan pelbagai mata wang.",
+        'feat.tasbih.h3': 'Penghitung Tasbih',
+        'feat.tasbih.p': 'Perdalam zikir anda. Penghitung digital tanpa gangguan dengan maklum balas haptik dan sasaran peribadi - supaya tiada apa yang memutuskan tumpuan anda.',
+        'feat.calendar.h3': 'Kalendar Islam',
+        'feat.calendar.p': 'Kekal berhubung dengan tahun Islam. Lihat tarikh Hijri anda dan jangan terlepas Ramadan, Hari Raya, atau pemerhatian penting lain dengan amaran acara akan datang.',
+        'feat.dua.h3': 'Perpustakaan Doa',
+        'feat.dua.p': 'Kata-kata yang tepat, setiap masa. Doa-doa sahih untuk situasi harian - dengan teks Arab, transliterasi, dan terjemahan - boleh digunakan tanpa internet.',
+        'more.eyebrow': 'Juga disertakan',
+        'more.asma': 'Asma ul Husna',
+        'more.hajj': 'Panduan Haji &amp; Umrah',
+        'more.dark': 'Mod Gelap',
+        'more.zeroads': 'Sifar Iklan',
+        'more.offline': 'Boleh Tanpa Internet',
+        'more.noaccount': 'Tanpa Akaun Diperlukan',
+        'more.free': 'Percuma Dimuat Turun',
+        'why.eyebrow': 'Mengapa Nurtools?',
+        'why.h2': 'Dibina berbeza, untuk Muslim yang ambil peduli',
+        'why.privacy.h3': 'Privasi Diutamakan',
+        'why.privacy.p': 'Tiada akaun. Tiada penjejakan. Lokasi anda hanya digunakan pada peranti - tidak pernah dihantar ke pelayan.',
+        'why.accuracy.h3': 'Ketepatan yang Boleh Dipercayai',
+        'why.accuracy.p': 'Waktu solat dan arah kiblat dikira dengan algoritma Islam yang telah mapan, bukan anggaran.',
+        'why.nodistract.h3': 'Tanpa Gangguan',
+        'why.nodistract.p': 'Tiada iklan, tiada pemberitahuan yang menjual sesuatu kepada anda, tiada suapan media sosial. Hanya alat yang anda perlukan untuk ibadah.',
+        'test.eyebrow': 'Apa yang pengguna katakan',
+        'test.h2': 'Muslim menyukai Nurtools',
+        'test.1.text': '\u201cAkhirnya aplikasi Islam yang melakukan semua yang saya perlukan tanpa membombardir saya dengan iklan. Kompas kiblat sangat tepat dan UI-nya bersih. JazakAllahu Khayran!\u201d',
+        'test.1.name': 'Khalid N.',
+        'test.2.text': '\u201cKalkulator zakat menjimatkan banyak masa saya tahun ini. Ia mengendalikan semua jenis aset saya dengan sempurna dan menunjukkan nilai nisab semasa secara automatik. Sangat suka!\u201d',
+        'test.2.name': 'Javed N.',
+        'test.3.text': '\u201cSaya selalu bermusafir dan aplikasi ini berfungsi tanpa internet, yang benar-benar mengubah segalanya. Waktu solat dan kiblat di mana saja saya berada, tanpa internet. Sangat disyorkan!\u201d',
+        'test.3.name': 'Nadim F.',
+        'faq.eyebrow': 'Soalan',
+        'faq.h2': 'Soalan lazim',
+        'faq.1.q': 'Adakah Nurtools benar-benar percuma?',
+        'faq.1.a': 'Ya - 100% percuma untuk dimuat turun dan digunakan. Tiada pembelian dalam aplikasi, tiada langganan, dan tiada iklan. Selama-lamanya. Sokongan pembangun sentiasa dialu-alukan dan dihargai.',
+        'faq.2.q': 'Adakah ia berfungsi tanpa sambungan internet?',
+        'faq.2.a': 'Ya. Kebanyakan ciri - termasuk waktu solat, kompas kiblat, tasbih, perpustakaan doa, dan Asma ul Husna - berfungsi sepenuhnya tanpa internet. Hanya nilai nisab langsung untuk zakat memerlukan sambungan internet.',
+        'faq.3.q': 'Seberapa tepat kompas kiblat?',
+        'faq.3.a': 'Kompas menggunakan magnetometer peranti anda dan lokasi GPS untuk mengira arah bulatan besar ke Kaabah. Gesaan penentukuran membimbing anda untuk membetulkan sebarang gangguan magnet sebelum bergantung padanya.',
+        'faq.4.q': 'Kaedah pengiraan waktu solat yang mana disokong?',
+        'faq.4.a': 'Nurtools menyokong beberapa kaedah pengiraan utama termasuk Rabithah Alam Islami, Pihak Berkuasa Umum Mesir, ISNA, Umm al-Qura, dan lain-lain - supaya anda boleh memadankan konvensyen yang digunakan di negara atau masjid anda.',
+        'faq.5.q': 'Adakah ia mengumpul data peribadi saya?',
+        'faq.5.a': 'Tidak. Nurtools tidak memerlukan akaun, tidak menyimpan lokasi anda di mana-mana pelayan, dan tidak berkongsi data anda dengan pihak ketiga. Akses lokasi hanya digunakan pada peranti untuk mengira waktu solat dan arah kiblat.',
+        'faq.6.q': 'Adakah Nurtools tersedia di iOS?',
+        'faq.6.a': 'Pada masa ini Nurtools tersedia di Android melalui Google Play. Versi iOS ada dalam peta jalan - ikuti kami untuk kemas kini atau hantar mesej untuk menyatakan minat anda.',
+        'cta.h2': 'Mulakan perjalanan anda hari ini',
+        'cta.p': 'Sertai Muslim di seluruh dunia yang bergantung pada Nurtools untuk ibadah harian mereka. Percuma, selama-lamanya.',
+        'cta.btn': 'Muat Turun Percuma di Google Play',
+        'cta.note': 'Tanpa iklan · Tanpa daftar · Boleh tanpa internet · Percuma selama-lamanya',
+        'footer.play': 'Google Play',
+        'footer.features': 'Ciri-ciri',
+        'footer.contact': 'Hubungi',
+        'footer.copyright': 'Nurtools. Hak cipta terpelihara.'
+      }
+    };
+
+    var RTL_LANGS = { ar: true, ur: true };
+
+    var LANG_META = {
+      en: { flag: '🌐', code: 'EN' },
+      ar: { flag: '🇸🇦', code: 'AR' },
+      fr: { flag: '🇫🇷', code: 'FR' },
+      id: { flag: '🇮🇩', code: 'ID' },
+      ur: { flag: '🇵🇰', code: 'UR' },
+      tr: { flag: '🇹🇷', code: 'TR' },
+      ms: { flag: '🇲🇾', code: 'MS' }
+    };
+
+    function applyLang(lang) {
+      var t = TRANSLATIONS[lang] || TRANSLATIONS['en'];
+      var html = document.documentElement;
+
+      html.lang = lang;
+      if (RTL_LANGS[lang]) {
+        html.dir = 'rtl';
+      } else {
+        html.dir = 'ltr';
+      }
+
+      document.querySelectorAll('[data-i18n]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n');
+        if (t[key] !== undefined) {
+          el.innerHTML = t[key];
+        }
+      });
+
+      var meta = LANG_META[lang] || LANG_META['en'];
+      var flagEl = document.getElementById('lang-flag');
+      var codeEl = document.getElementById('lang-code');
+      if (flagEl) { flagEl.textContent = meta.flag; }
+      if (codeEl) { codeEl.textContent = meta.code; }
+
+      try { localStorage.setItem('nurtools-lang', lang); } catch (e) {}
+    }
+
+    // Language switcher
+    (function () {
+      var btn  = document.getElementById('lang-btn');
+      var menu = document.getElementById('lang-menu');
+      if (!btn || !menu) { return; }
+
+      function openMenu()  { menu.classList.remove('hidden'); btn.setAttribute('aria-expanded', 'true'); }
+      function closeMenu() { menu.classList.add('hidden');    btn.setAttribute('aria-expanded', 'false'); }
+
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        menu.classList.contains('hidden') ? openMenu() : closeMenu();
+      });
+
+      document.addEventListener('click', closeMenu);
+      menu.addEventListener('click', function (e) { e.stopPropagation(); });
+
+      document.querySelectorAll('.lang-option').forEach(function (opt) {
+        opt.addEventListener('click', function () {
+          applyLang(this.getAttribute('data-lang'));
+          closeMenu();
+        });
+      });
+
+      // Init: saved preference → browser language → English
+      var saved = '';
+      try { saved = localStorage.getItem('nurtools-lang') || ''; } catch (e) {}
+      var browser = (navigator.language || 'en').split('-')[0];
+      var initLang = (saved && TRANSLATIONS[saved]) ? saved
+                   : (TRANSLATIONS[browser]         ? browser
+                   :                                  'en');
+      applyLang(initLang);
     })();
   </script>
 </body>
