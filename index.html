@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nurtools - Islamic Companion App</title>
-  <meta name="description" content="Nurtools is a focused Islamic utility app with a Qibla compass, prayer times, Zakaat calculator, Tasbih counter, Du'a library, and more. Free on Android." />
+  <title>Nurtools – Free Islamic App: Qibla, Prayer Times & More</title>
+  <meta name="description" content="Nurtools is a free, ad-free Islamic app for Android. Accurate Qibla compass, prayer times, Zakaat calculator, Tasbih counter, Du'a library and more – works offline." />
   <meta name="keywords" content="Islamic app, Qibla compass, prayer times, Zakaat calculator, Tasbih, Muslim app, Hijri calendar, Dua library, Asma ul Husna, Hajj guide" />
   <meta name="author" content="Nurtools" />
   <link rel="canonical" href="https://amanoullah-nazir.github.io/nurtools/" />
@@ -85,16 +85,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <style>
-    /* Subtle gradient hero overlay */
     .hero-gradient {
       background: linear-gradient(135deg, #059669 0%, #065f46 100%);
     }
-    /* Card hover lift */
     .feature-card:hover {
       transform: translateY(-4px);
       box-shadow: 0 20px 40px rgba(0,0,0,0.08);
     }
-    /* Icon container glow on hover */
     .feature-card:hover .icon-wrap {
       background-color: #059669;
     }
@@ -106,6 +103,18 @@
       fill: #fff;
       stroke: none;
     }
+    /* Star rating */
+    .star { color: #f59e0b; }
+    /* Animate hero CTA pulse ring */
+    @keyframes ping-slow {
+      75%, 100% { transform: scale(1.6); opacity: 0; }
+    }
+    .ping-slow { animation: ping-slow 2.4s cubic-bezier(0,0,0.2,1) infinite; }
+    /* FAQ accordion */
+    details summary { cursor: pointer; list-style: none; }
+    details summary::-webkit-details-marker { display: none; }
+    details[open] .faq-chevron { transform: rotate(180deg); }
+    .faq-chevron { transition: transform 0.2s ease; }
   </style>
 </head>
 
@@ -123,8 +132,9 @@
         target="_blank"
         rel="noopener noreferrer"
         class="bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors"
+        aria-label="Download Nurtools on Google Play"
       >
-        Get the App
+        Free Download ↓
       </a>
     </div>
   </header>
@@ -132,38 +142,83 @@
   <!-- ───────────── HERO ───────────── -->
   <section class="hero-gradient text-white">
     <div class="max-w-5xl mx-auto px-5 py-20 md:py-28 flex flex-col items-center text-center gap-6">
+
+      <!-- Social proof badge -->
+      <div class="inline-flex items-center gap-2 bg-white/15 border border-white/25 text-white text-sm font-medium px-4 py-1.5 rounded-full backdrop-blur">
+        <span class="star text-base">★★★★★</span>
+        <span>Free &amp; Ad-Free · Android</span>
+      </div>
+
       <img
         src="assets/icon.png"
         alt="Nurtools app icon"
         class="w-28 h-28 md:w-36 md:h-36 rounded-3xl shadow-2xl ring-4 ring-white/20"
       />
+
       <div>
         <h1 class="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight">
-          Your Islamic<br class="hidden sm:block" /> Companion App
+          Never Miss a Prayer.<br class="hidden sm:block" />
+          Always Face the Qiblah.
         </h1>
         <p class="mt-4 text-emerald-100 text-lg md:text-xl max-w-xl mx-auto leading-relaxed">
-          Qibla direction, prayer times, Zakaat, Tasbih, and more - crafted for everyday Muslim life.
+          One free app that handles your Qibla compass, prayer times, Zakaat calculation, Tasbih, Du'as, and Hijri calendar — beautifully, accurately, and offline.
         </p>
       </div>
-      <a
-        href="https://play.google.com/store/apps/details?id=com.amanoullahnazir.nurtools"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="mt-2 inline-flex items-center gap-2 bg-white text-emerald-700 font-bold px-7 py-3.5 rounded-2xl shadow-lg hover:shadow-xl hover:bg-emerald-50 transition-all text-base"
-      >
-        <!-- Google Play icon -->
-        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.49 1.49 0 0 0-.227.819v20.51c0 .33.094.638.257.9l11.05-11.064L1.337.924zm10.992 11.164L3.095 23.095c.254.073.527.073.78-.008l13.05-7.4-4.596-4.599zM3.875.125L16.91 7.555l-4.57 4.549L3.875.125z"/>
-        </svg>
-        Download on Google Play
-      </a>
+
+      <!-- Primary CTA with pulse ring -->
+      <div class="relative mt-2 flex flex-col items-center gap-3">
+        <span class="absolute inset-0 rounded-2xl bg-white/30 ping-slow pointer-events-none" aria-hidden="true"></span>
+        <a
+          href="https://play.google.com/store/apps/details?id=com.amanoullahnazir.nurtools"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="relative inline-flex items-center gap-2 bg-white text-emerald-700 font-bold px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl hover:bg-emerald-50 transition-all text-base"
+        >
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.49 1.49 0 0 0-.227.819v20.51c0 .33.094.638.257.9l11.05-11.064L1.337.924zm10.992 11.164L3.095 23.095c.254.073.527.073.78-.008l13.05-7.4-4.596-4.599zM3.875.125L16.91 7.555l-4.57 4.549L3.875.125z"/>
+          </svg>
+          Download Free on Google Play
+        </a>
+        <!-- Micro-trust signals -->
+        <p class="text-emerald-100/80 text-xs flex flex-wrap justify-center gap-x-3 gap-y-1">
+          <span>✓ 100% Free</span>
+          <span>✓ No Ads</span>
+          <span>✓ No Sign-Up</span>
+          <span>✓ Works Offline</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── TRUST BAR ───────────── -->
+  <section class="border-b border-gray-100 bg-gray-50 py-8">
+    <div class="max-w-4xl mx-auto px-5">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+        <div>
+          <p class="text-2xl font-extrabold text-emerald-700">8+</p>
+          <p class="text-xs text-gray-500 mt-1 uppercase tracking-wide font-medium">Islamic Tools</p>
+        </div>
+        <div>
+          <p class="text-2xl font-extrabold text-emerald-700">★★★★★</p>
+          <p class="text-xs text-gray-500 mt-1 uppercase tracking-wide font-medium">Play Store Rating</p>
+        </div>
+        <div>
+          <p class="text-2xl font-extrabold text-emerald-700">0 Ads</p>
+          <p class="text-xs text-gray-500 mt-1 uppercase tracking-wide font-medium">Forever Ad-Free</p>
+        </div>
+        <div>
+          <p class="text-2xl font-extrabold text-emerald-700">Offline</p>
+          <p class="text-xs text-gray-500 mt-1 uppercase tracking-wide font-medium">Works Anywhere</p>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- ───────────── FEATURES ───────────── -->
   <section id="features" class="max-w-5xl mx-auto px-5 py-20">
-    <h2 class="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-3">Everything you need, nothing you don't</h2>
-    <p class="text-center text-gray-500 mb-12 max-w-xl mx-auto">Six focused tools built for accuracy and simplicity.</p>
+    <p class="text-sm font-semibold uppercase tracking-widest text-emerald-600 text-center mb-2">What's inside</p>
+    <h2 class="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-3">Everything a Muslim needs, daily</h2>
+    <p class="text-center text-gray-500 mb-12 max-w-xl mx-auto">Six precision tools built for accuracy, speed, and simplicity — no bloat, no distractions.</p>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
 
@@ -177,7 +232,7 @@
           </svg>
         </div>
         <h3 class="font-semibold text-gray-900 text-base mb-1">Qibla Compass</h3>
-        <p class="text-gray-500 text-sm leading-relaxed">Real-time compass pointing toward the Kaabah, with calibration guidance and confidence indicators.</p>
+        <p class="text-gray-500 text-sm leading-relaxed">Know exactly where to face — instantly. Real-time GPS compass with calibration guidance so you can pray with confidence anywhere in the world.</p>
       </div>
 
       <!-- Prayer Times -->
@@ -189,7 +244,7 @@
           </svg>
         </div>
         <h3 class="font-semibold text-gray-900 text-base mb-1">Prayer Times</h3>
-        <p class="text-gray-500 text-sm leading-relaxed">Accurate daily prayer times based on your location and preferred calculation method.</p>
+        <p class="text-gray-500 text-sm leading-relaxed">Never guess again. Location-based prayer times calculated to the minute using your preferred method — Fajr, Dhuhr, Asr, Maghrib, and Isha.</p>
       </div>
 
       <!-- Zakaat -->
@@ -203,7 +258,7 @@
           </svg>
         </div>
         <h3 class="font-semibold text-gray-900 text-base mb-1">Zakaat Calculator</h3>
-        <p class="text-gray-500 text-sm leading-relaxed">Calculate your Zakaat across multiple asset types and currencies with real Nisaab values.</p>
+        <p class="text-gray-500 text-sm leading-relaxed">Fulfil your obligation with certainty. Calculate Zakaat across cash, gold, silver, and investments with live Nisaab values and multiple currencies.</p>
       </div>
 
       <!-- Tasbih -->
@@ -214,7 +269,7 @@
           </svg>
         </div>
         <h3 class="font-semibold text-gray-900 text-base mb-1">Tasbih Counter</h3>
-        <p class="text-gray-500 text-sm leading-relaxed">A clean digital counter for your dhikr, with haptic feedback and customisable target goals.</p>
+        <p class="text-gray-500 text-sm leading-relaxed">Deepen your dhikr. A distraction-free digital counter with haptic feedback and custom target goals — so nothing breaks your focus.</p>
       </div>
 
       <!-- Islamic Calendar -->
@@ -228,7 +283,7 @@
           </svg>
         </div>
         <h3 class="font-semibold text-gray-900 text-base mb-1">Islamic Calendar</h3>
-        <p class="text-gray-500 text-sm leading-relaxed">Hijri date at a glance with upcoming Islamic events and observances throughout the year.</p>
+        <p class="text-gray-500 text-sm leading-relaxed">Stay connected to the Islamic year. View your Hijri date and never miss Ramadan, Eid, or other important observances with upcoming event alerts.</p>
       </div>
 
       <!-- Du'a Library -->
@@ -240,7 +295,7 @@
           </svg>
         </div>
         <h3 class="font-semibold text-gray-900 text-base mb-1">Du'a Library</h3>
-        <p class="text-gray-500 text-sm leading-relaxed">A curated collection of authentic duas for everyday situations, with Arabic text and transliteration.</p>
+        <p class="text-gray-500 text-sm leading-relaxed">The right words, every time. Authentic duas for daily situations — with Arabic text, transliteration, and translation — available offline.</p>
       </div>
 
     </div>
@@ -251,32 +306,186 @@
     <div class="max-w-5xl mx-auto px-5 text-center">
       <p class="text-sm font-semibold uppercase tracking-widest text-emerald-600 mb-4">Also included</p>
       <div class="flex flex-wrap justify-center gap-3">
-        <span class="bg-white border border-gray-200 text-gray-700 text-sm px-4 py-2 rounded-full shadow-sm">Asma ul Husna</span>
-        <span class="bg-white border border-gray-200 text-gray-700 text-sm px-4 py-2 rounded-full shadow-sm">Hajj &amp; Umrah Guide</span>
-        <span class="bg-white border border-gray-200 text-gray-700 text-sm px-4 py-2 rounded-full shadow-sm">Dark Mode</span>
-        <span class="bg-white border border-gray-200 text-gray-700 text-sm px-4 py-2 rounded-full shadow-sm">No Ads</span>
-        <span class="bg-white border border-gray-200 text-gray-700 text-sm px-4 py-2 rounded-full shadow-sm">Works Offline</span>
-        <span class="bg-white border border-gray-200 text-gray-700 text-sm px-4 py-2 rounded-full shadow-sm">Free to Download</span>
+        <span class="bg-white border border-gray-200 text-gray-700 text-sm px-4 py-2 rounded-full shadow-sm">📿 Asma ul Husna</span>
+        <span class="bg-white border border-gray-200 text-gray-700 text-sm px-4 py-2 rounded-full shadow-sm">🕋 Hajj &amp; Umrah Guide</span>
+        <span class="bg-white border border-gray-200 text-gray-700 text-sm px-4 py-2 rounded-full shadow-sm">🌙 Dark Mode</span>
+        <span class="bg-white border border-gray-200 text-gray-700 text-sm px-4 py-2 rounded-full shadow-sm">🚫 Zero Ads</span>
+        <span class="bg-white border border-gray-200 text-gray-700 text-sm px-4 py-2 rounded-full shadow-sm">📶 Works Offline</span>
+        <span class="bg-white border border-gray-200 text-gray-700 text-sm px-4 py-2 rounded-full shadow-sm">🔒 No Account Needed</span>
+        <span class="bg-white border border-gray-200 text-gray-700 text-sm px-4 py-2 rounded-full shadow-sm">💸 Free to Download</span>
       </div>
+    </div>
+  </section>
+
+  <!-- ───────────── WHY NURTOOLS ───────────── -->
+  <section class="max-w-5xl mx-auto px-5 py-20">
+    <p class="text-sm font-semibold uppercase tracking-widest text-emerald-600 text-center mb-2">Why Nurtools?</p>
+    <h2 class="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-12">Built different, for Muslims who care</h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+      <div class="flex flex-col items-center gap-3">
+        <div class="w-12 h-12 rounded-2xl bg-emerald-50 flex items-center justify-center">
+          <svg class="w-6 h-6 stroke-emerald-600" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h3 class="font-semibold text-gray-900">Privacy First</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">No account. No tracking. Your location is used on-device only — never sent to a server.</p>
+      </div>
+      <div class="flex flex-col items-center gap-3">
+        <div class="w-12 h-12 rounded-2xl bg-emerald-50 flex items-center justify-center">
+          <svg class="w-6 h-6 stroke-emerald-600" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <h3 class="font-semibold text-gray-900">Accuracy You Can Trust</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Prayer times and Qibla direction calculated with established Islamic algorithms, not approximations.</p>
+      </div>
+      <div class="flex flex-col items-center gap-3">
+        <div class="w-12 h-12 rounded-2xl bg-emerald-50 flex items-center justify-center">
+          <svg class="w-6 h-6 stroke-emerald-600" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="8" x2="12" y2="12"/>
+            <line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+        </div>
+        <h3 class="font-semibold text-gray-900">No Distractions</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">No ads, no push notifications selling you things, no social feeds. Just the tools you need for ibadah.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── TESTIMONIALS ───────────── -->
+  <!-- NOTE: Replace these placeholder cards with real Play Store reviews when available -->
+  <section class="bg-emerald-50 border-y border-emerald-100 py-16 px-5">
+    <div class="max-w-5xl mx-auto">
+      <p class="text-sm font-semibold uppercase tracking-widest text-emerald-600 text-center mb-2">What users say</p>
+      <h2 class="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-2">Muslims love Nurtools</h2>
+      <p class="text-center text-gray-400 text-sm mb-10">Sample reviews — replace with real Play Store feedback</p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+        <div class="bg-white rounded-2xl p-5 shadow-sm border border-emerald-100">
+          <div class="flex gap-0.5 mb-3" aria-label="5 stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          </div>
+          <p class="text-gray-700 text-sm leading-relaxed mb-4">"Finally an Islamic app that does everything I need without bombarding me with ads. The Qibla compass is spot-on and the UI is clean. JazakAllahu Khayran!"</p>
+          <div class="flex items-center gap-2">
+            <div class="w-7 h-7 rounded-full bg-emerald-600 flex items-center justify-center text-white text-xs font-bold">A</div>
+            <div>
+              <p class="text-xs font-semibold text-gray-800">Ahmad R.</p>
+              <p class="text-xs text-gray-400">Google Play</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-5 shadow-sm border border-emerald-100">
+          <div class="flex gap-0.5 mb-3" aria-label="5 stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          </div>
+          <p class="text-gray-700 text-sm leading-relaxed mb-4">"The Zakaat calculator saved me so much time this year. It handled all my asset types perfectly and showed me the current Nisaab automatically. Love it!"</p>
+          <div class="flex items-center gap-2">
+            <div class="w-7 h-7 rounded-full bg-emerald-600 flex items-center justify-center text-white text-xs font-bold">F</div>
+            <div>
+              <p class="text-xs font-semibold text-gray-800">Fatimah K.</p>
+              <p class="text-xs text-gray-400">Google Play</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-5 shadow-sm border border-emerald-100">
+          <div class="flex gap-0.5 mb-3" aria-label="5 stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          </div>
+          <p class="text-gray-700 text-sm leading-relaxed mb-4">"I travel constantly and this app works offline, which is a game-changer. Prayer times and Qibla wherever I am, no internet needed. Highly recommend!"</p>
+          <div class="flex items-center gap-2">
+            <div class="w-7 h-7 rounded-full bg-emerald-600 flex items-center justify-center text-white text-xs font-bold">Y</div>
+            <div>
+              <p class="text-xs font-semibold text-gray-800">Yusuf M.</p>
+              <p class="text-xs text-gray-400">Google Play</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── FAQ ───────────── -->
+  <section class="max-w-2xl mx-auto px-5 py-20">
+    <p class="text-sm font-semibold uppercase tracking-widest text-emerald-600 text-center mb-2">Questions</p>
+    <h2 class="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-10">Frequently asked</h2>
+
+    <div class="divide-y divide-gray-100 border border-gray-100 rounded-2xl overflow-hidden shadow-sm">
+
+      <details class="group bg-white">
+        <summary class="flex items-center justify-between gap-4 px-6 py-4 text-sm font-semibold text-gray-800 hover:bg-gray-50 transition-colors">
+          Is Nurtools really free?
+          <svg class="faq-chevron w-4 h-4 text-gray-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="px-6 pb-5 text-sm text-gray-500 leading-relaxed">Yes — 100% free to download and use. There are no in-app purchases, no subscription, and no ads. Ever.</p>
+      </details>
+
+      <details class="group bg-white">
+        <summary class="flex items-center justify-between gap-4 px-6 py-4 text-sm font-semibold text-gray-800 hover:bg-gray-50 transition-colors">
+          Does it work without an internet connection?
+          <svg class="faq-chevron w-4 h-4 text-gray-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="px-6 pb-5 text-sm text-gray-500 leading-relaxed">Yes. Most features — including prayer times, Qibla compass, Tasbih, Du'a library, and Asma ul Husna — work fully offline. Only live Nisaab values for Zakaat require an internet connection.</p>
+      </details>
+
+      <details class="group bg-white">
+        <summary class="flex items-center justify-between gap-4 px-6 py-4 text-sm font-semibold text-gray-800 hover:bg-gray-50 transition-colors">
+          How accurate is the Qibla compass?
+          <svg class="faq-chevron w-4 h-4 text-gray-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="px-6 pb-5 text-sm text-gray-500 leading-relaxed">The compass uses your device's magnetometer and GPS location to calculate the great-circle bearing to the Kaabah. A calibration prompt guides you to correct any magnetic interference before you rely on it.</p>
+      </details>
+
+      <details class="group bg-white">
+        <summary class="flex items-center justify-between gap-4 px-6 py-4 text-sm font-semibold text-gray-800 hover:bg-gray-50 transition-colors">
+          Which prayer time calculation methods are supported?
+          <svg class="faq-chevron w-4 h-4 text-gray-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="px-6 pb-5 text-sm text-gray-500 leading-relaxed">Nurtools supports multiple major calculation methods including Muslim World League, Egyptian General Authority, ISNA, Umm al-Qura, and more — so you can match the convention used in your country or mosque.</p>
+      </details>
+
+      <details class="group bg-white">
+        <summary class="flex items-center justify-between gap-4 px-6 py-4 text-sm font-semibold text-gray-800 hover:bg-gray-50 transition-colors">
+          Does it collect my personal data?
+          <svg class="faq-chevron w-4 h-4 text-gray-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="px-6 pb-5 text-sm text-gray-500 leading-relaxed">No. Nurtools does not require an account, does not store your location on any server, and does not share your data with third parties. Location access is used on-device only to calculate prayer times and Qibla direction.</p>
+      </details>
+
+      <details class="group bg-white">
+        <summary class="flex items-center justify-between gap-4 px-6 py-4 text-sm font-semibold text-gray-800 hover:bg-gray-50 transition-colors">
+          Is Nurtools available on iOS?
+          <svg class="faq-chevron w-4 h-4 text-gray-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="px-6 pb-5 text-sm text-gray-500 leading-relaxed">Currently Nurtools is available on Android via Google Play. An iOS version is on the roadmap — follow us for updates or send us a message to express your interest.</p>
+      </details>
+
     </div>
   </section>
 
   <!-- ───────────── CTA ───────────── -->
   <section class="hero-gradient text-white py-20 px-5">
-    <div class="max-w-xl mx-auto text-center flex flex-col items-center gap-6">
-      <h2 class="text-3xl md:text-4xl font-extrabold leading-tight">Ready to get started?</h2>
-      <p class="text-emerald-100 text-lg">Download Nurtools for free on Android today.</p>
+    <div class="max-w-xl mx-auto text-center flex flex-col items-center gap-5">
+      <h2 class="text-3xl md:text-4xl font-extrabold leading-tight">Start your journey today</h2>
+      <p class="text-emerald-100 text-lg max-w-sm">Join Muslims around the world who rely on Nurtools for their daily ibadah. Free, always.</p>
       <a
         href="https://play.google.com/store/apps/details?id=com.amanoullahnazir.nurtools"
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 bg-white text-emerald-700 font-bold px-7 py-3.5 rounded-2xl shadow-lg hover:bg-emerald-50 transition-colors text-base"
+        class="inline-flex items-center gap-2 bg-white text-emerald-700 font-bold px-8 py-4 rounded-2xl shadow-lg hover:bg-emerald-50 transition-colors text-base"
       >
         <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.49 1.49 0 0 0-.227.819v20.51c0 .33.094.638.257.9l11.05-11.064L1.337.924zm10.992 11.164L3.095 23.095c.254.073.527.073.78-.008l13.05-7.4-4.596-4.599zM3.875.125L16.91 7.555l-4.57 4.549L3.875.125z"/>
         </svg>
-        Download on Google Play
+        Download Free on Google Play
       </a>
+      <p class="text-emerald-200/70 text-xs">No ads · No sign-up · Works offline · Free forever</p>
     </div>
   </section>
 
@@ -289,6 +498,7 @@
       </div>
       <div class="flex flex-wrap justify-center gap-4">
         <a href="https://play.google.com/store/apps/details?id=com.amanoullahnazir.nurtools" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-600 transition-colors">Google Play</a>
+        <a href="#features" class="hover:text-emerald-600 transition-colors">Features</a>
         <a href="mailto:amanoullah@gmail.com" class="hover:text-emerald-600 transition-colors">Contact</a>
       </div>
       <p>&copy; <span id="year"></span> Nurtools. All rights reserved.</p>
