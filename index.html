@@ -284,8 +284,8 @@
         <div class="relative" id="lang-switcher">
           <button id="lang-btn" class="flex items-center gap-1 text-sm text-gray-600 hover:text-emerald-600 px-2 py-1.5 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Change language" aria-haspopup="listbox" aria-expanded="false">
             <span id="lang-flag" aria-hidden="true">🌐</span>
-            <span id="lang-code" class="font-medium">EN</span>
-            <svg class="w-3.5 h-3.5 text-gray-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            <span id="lang-code" class="font-medium hidden sm:inline">EN</span>
+            <svg class="w-3.5 h-3.5 text-gray-400 flex-shrink-0 hidden sm:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
           </button>
           <div id="lang-menu" role="menu" class="hidden absolute right-0 top-full mt-1 bg-white border border-gray-100 rounded-xl shadow-lg py-1 z-50">
             <button data-lang="en"  class="lang-option" role="menuitem">🇬🇧 English</button>
@@ -301,11 +301,12 @@
           href="https://play.google.com/store/apps/details?id=com.amanoullahnazir.nurtools"
           target="_blank"
           rel="noopener noreferrer"
-          class="bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors"
+          class="bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-semibold rounded-xl transition-colors px-3 py-1.5 text-xs sm:text-sm sm:px-4 sm:py-2"
           aria-label="Download Nurtools on Google Play"
           data-i18n="nav.download"
         >
-          Free Download ↓
+          <span class="sm:hidden">Free ↓</span>
+          <span class="hidden sm:inline">Free Download ↓</span>
         </a>
       </div>
     </div>
